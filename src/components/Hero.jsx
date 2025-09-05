@@ -44,10 +44,10 @@ const Hero = () => {
 
                         </p>
                         <motion.a 
-                            href="/resume.pdf"
+                            href="/Alejandro/resume.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            download
+                            download="Alejandro_Perez_Resume.pdf"
                             className="bg-white rounded-full p-4.5 text-lg text-stone-800 mb-10 shadow-sm hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] focus-visible:scale-105 relative overflow-hidden"
                             whileHover="hover"
                             initial="initial"
