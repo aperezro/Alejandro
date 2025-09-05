@@ -29,7 +29,10 @@ const Contact = () => {
           >
               {CONTACT.phoneNo}
           </motion.p>
-          <a href="#" className="border-b animated-stone-gradient-text-fast">
+          <a 
+            href={`mailto:${CONTACT.email}?subject=Hello from your website&body=Hi Alejandro,%0D%0A%0D%0AI came across your website and would like to get in touch.%0D%0A%0D%0A`}
+            className="border-b animated-stone-gradient-text-fast hover:opacity-80 transition-opacity duration-200"
+          >
               {CONTACT.email}
           </a>
       </div>
