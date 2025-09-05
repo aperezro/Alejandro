@@ -19,7 +19,7 @@ const App = () => {
 
 
 
-      <div className="container mx-auto px-8">
+      <div className="container mx-auto px-4 sm:px-8 max-w-full overflow-hidden">
         <Navbar />
         <Hero />
         <Technologies />

@@ -19,21 +19,21 @@ const Projects = () => {
         </div>
       </motion.div> 
 
-      <div>
+      <div className="max-w-full overflow-hidden px-4">
         {PROJECTS.map((project, index) => (
-          <div key={index} className="mb-8 flex flex-wrap items-start gap-6 lg:gap-12 lg:justify-center">
+          <div key={index} className="mb-8 flex flex-wrap items-start gap-6 lg:gap-12 lg:justify-center max-w-full">
             
             <motion.div 
             whileInView={{opacity: 1,x: 0 }}
             initial={{opacity: 0,x: -100 }}
             transition={{duration: 1}}
-            className="w-full lg:w-1/4 lg:pr-8">
+            className="w-full lg:w-1/4 lg:pr-8 min-w-0">
               <img 
                 src={project.image} 
                 alt={project.title}
                 width={250}
                 height={250}
-                className="mb-6 rounded"/>
+                className="mb-6 rounded max-w-full h-auto"/>
             </motion.div>
 
             <motion.div 
@@ -41,7 +41,7 @@ const Projects = () => {
             initial={{opacity: 0,x: 100 }}
             transition={{duration: 1}}
             
-            className="w-full max-w-xl lg:w-3/4">
+            className="w-full max-w-xl lg:w-3/4 min-w-0">
             <h3 className="mb-2 font-semibold text-2xl">{project.title}</h3>
             <p className='mb-4 text-stone-400'>{project.description}</p>
             <div className="flex flex-wrap items-center gap-2">

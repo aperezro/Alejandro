@@ -50,7 +50,7 @@ const Technologies = () => {
         whileInView={{opacity: 1,x: 0 }}
         initial={{opacity: 0,x: -100 }}
         transition={{duration: 1.5}}
-        className="flex flex-wrap items-center justify-center gap-4">
+        className="flex flex-wrap items-center justify-center gap-4 max-w-full overflow-hidden px-4">
             
             <motion.div
                 initial="initial"
@@ -58,7 +58,7 @@ const Technologies = () => {
                 variants={iconVariants(2.5)}
                 className="p-4" >
             
-                <RiReactjsLine className="text-7xl text-cyan-400" />
+                <RiReactjsLine className="text-5xl lg:text-6xl text-cyan-400" />
             </motion.div>
 
             <motion.div
@@ -66,7 +66,7 @@ const Technologies = () => {
                 animate="animate"
                 variants={iconVariants(2)}
                  className="p-4">
-                <TbBrandNextjs className="text-7xl" />
+                <TbBrandNextjs className="text-5xl lg:text-6xl" />
             </motion.div>
 
             <motion.div 
@@ -74,7 +74,7 @@ const Technologies = () => {
             animate="animate"
             variants={iconVariants(2.5)}
             className="p-4">
-                <SiMongodb className="text-7xl text-cyan-500" />
+                <SiMongodb className="text-5xl lg:text-6xl text-cyan-500" />
             </motion.div>
             
 
@@ -83,7 +83,7 @@ const Technologies = () => {
             animate="animate"
                 variants={iconVariants(6)}
             className="p-4">
-                <FaNodeJs  className="text-7xl text-green-500" />
+                <FaNodeJs  className="text-5xl lg:text-6xl text-green-500" />
             </motion.div>
 
             <motion.div 
@@ -91,7 +91,7 @@ const Technologies = () => {
             animate="animate"
             variants={iconVariants(4)}
             className="p-4">
-                <FaShopify  className="text-7xl text-green-300" />
+                <FaShopify  className="text-5xl lg:text-6xl text-green-300" />
             </motion.div>
 
             <motion.div
@@ -99,7 +99,7 @@ const Technologies = () => {
             animate="animate"
             variants={iconVariants(2.5)} 
             className="p-4">
-                <IoLogoFirebase  className="text-7xl text-orange-300" />
+                <IoLogoFirebase  className="text-5xl lg:text-6xl text-orange-300" />
             </motion.div>
 
             <motion.div 
@@ -107,7 +107,7 @@ const Technologies = () => {
             animate="animate"
             variants={iconVariants(4.5)}
             className="p-4">
-                <FaAndroid  className="text-7xl text-green-400" />
+                <FaAndroid  className="text-5xl lg:text-6xl text-green-400" />
             </motion.div>
 
             <motion.div 
@@ -115,7 +115,7 @@ const Technologies = () => {
             animate="animate"
             variants={iconVariants(2.5)}
             className="p-4">
-                <FaHtml5  className="text-7xl text-orange-500" />
+                <FaHtml5  className="text-5xl lg:text-6xl text-orange-500" />
             </motion.div>
 
             

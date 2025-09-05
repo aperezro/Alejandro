@@ -5,8 +5,8 @@ import { motion } from "framer-motion"
 
 const Hero = () => {
     return (
-        <div className="pb-4 lg:mb-36">
-            <div className="flex flex-wrap lg:flex-row-reverse">
+        <div className="pb-4 lg:mb-36 overflow-hidden">
+            <div className="flex flex-wrap lg:flex-row-reverse max-w-full">
 
                <div className="w-full lg:w-1/2">
   <div className="flex justify-center lg:p-8">
@@ -26,14 +26,14 @@ const Hero = () => {
 </div>
 
 
-                <div className="w-full lg:w-1/2">
+                <div className="w-full lg:w-1/2 min-w-0">
                     <motion.div 
-                        className="flex flex-col items-center lg:items-start mt-10"
+                        className="flex flex-col items-center lg:items-start mt-10 max-w-full lg:ml-40"
                         initial={{ x: -100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                     >
-                        <h2 className = "animated-gradient-text pb-2 text-4xl tracking-tighter lg:text-8xl">
+                        <h2 className = "animated-gradient-text pb-2 text-4xl tracking-tighter lg:text-6xl xl:text-7xl break-words">
                             Alejandro Pérez
                         </h2>
                         <span className="bg-gradient-to-r from-stone-200 to-stone-400 bg-clip-text 
@@ -48,7 +48,7 @@ const Hero = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             download="Alejandro_Perez_Resume.pdf"
-                            className="bg-white rounded-full p-4.5 text-lg text-stone-800 mb-10 shadow-sm hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] focus-visible:scale-105 relative overflow-hidden"
+                            className="bg-white rounded-full p-4.5 text-lg text-stone-800 mb-10 shadow-sm hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] focus-visible:scale-105 relative overflow-hidden max-w-full"
                             whileHover="hover"
                             initial="initial"
                         >
