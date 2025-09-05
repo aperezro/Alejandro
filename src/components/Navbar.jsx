@@ -5,15 +5,13 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between py-6">
       <div className="flex flex-shrink-0 items-center">
-        <a href="/" aria-label="Home">
-          <img 
-            src={logo} 
-            className="mx-2" 
-            width={100} 
-            height={50} 
-            alt="logo" 
-          />
-        </a>
+        <img 
+          src={logo} 
+          className="mx-2" 
+          width={100} 
+          height={50} 
+          alt="Alejandro Perez Logo" 
+        />
       </div>
 
       <div className="m-8 flex items-center justify-center gap-4 text-4xl">
