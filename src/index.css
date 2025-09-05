@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  font-family: 'Inter', sans-serif;
+}
+
+
+@keyframes hueRotateGradient {
+  from {
+    filter: hue-rotate(0deg);
+    -webkit-filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(-360deg);
+    -webkit-filter: hue-rotate(-360deg);
+  }
+}
+
+.animated-gradient-text {
+  color: #f35626;
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hueRotateGradient 10s infinite linear;
+}
+
+.animated-gradient-text-fast {
+  color: #f35626;
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hueRotateGradient 3s infinite linear;
+}
+
+@keyframes stoneGradientShift {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animated-stone-gradient-text {
+  background-image: linear-gradient(90deg, #e7e5e4, #d7dbf1, #9ecefe, #b593ff, #e7e5e4);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: stoneGradientShift 3s linear infinite;
+}
+
+.animated-stone-gradient-text-fast {
+  background-image: linear-gradient(90deg, #e7e5e4, #d7dbf1, #7bbbfb, #3e93f4, #e4e4e7);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: stoneGradientShift 1.5s linear infinite;
+}
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 90%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 2s ease infinite;
+}
+
+
+
