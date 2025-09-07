@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Experience = () => {
   return (
-    <div className="pb-4 px-4"> {/* add side padding on mobile */}
+    <div className="pb-4 px-4"> 
       <motion.div 
         className="my-20 flex justify-center"
         whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +30,6 @@ const Experience = () => {
               <p className="mb-2 text-sm text-stone-400">{experience.year}</p>
             </div>
 
-            {/* min-w-0 lets this flex child actually shrink on small screens */}
             <div className="w-full max-w-xl lg:w-3/4 min-w-0">
               <h3 className="mb-2 font-semibold">
                 {experience.role}{" - "}
@@ -39,7 +38,22 @@ const Experience = () => {
 
               <p className="mb-4 text-stone-400">{experience.description}</p>
 
-              {/* Wrap chips and prevent horizontal overflow */}
+              
+              {index === 1 && (
+                <motion.a
+                  href="https://aperezro.github.io/Desi/#/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block rounded-lg bg-orange-500 px-4 py-2 text-sm font-medium text-white"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.1, boxShadow: "0px 0px 8px rgba(255,140,0,0.8)" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  View Website
+                </motion.a>
+              )}
+
               <div className="mt-4 flex flex-wrap gap-2 break-words">
                 {experience.technologies.map((tech, i) => (
                   <motion.span
@@ -59,4 +73,5 @@ const Experience = () => {
     </div>
   );
 };
+
 export default Experience;
