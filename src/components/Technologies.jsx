@@ -7,7 +7,13 @@ import { IoLogoFirebase } from "react-icons/io5";
 import { FaAndroid } from "react-icons/fa";
 import { FaHtml5 } from "react-icons/fa";
 import { FaPython } from "react-icons/fa";
+import { DiGit } from "react-icons/di";
+import { DiJava } from "react-icons/di";
+
+
 import{animate, motion} from 'framer-motion'
+
+
 
 const iconVariants = (duration) => ({
     initial: {y: -10},
@@ -110,12 +116,34 @@ const Technologies = () => {
                 <FaAndroid  className="text-5xl lg:text-6xl text-green-400" />
             </motion.div>
 
-            <motion.div 
+            <motion.div  
             initial="initial"
             animate="animate"
             variants={iconVariants(2.5)}
             className="p-4">
                 <FaHtml5  className="text-5xl lg:text-6xl text-orange-500" />
+            </motion.div>
+
+            <motion.div  
+            initial="initial"
+            animate="animate"
+            variants={iconVariants(3.5)}
+            className="p-4">
+                <FaPython  className="text-5xl lg:text-6xl text-yellow-500" />
+            </motion.div>
+            <motion.div  
+            initial="initial"
+            animate="animate"
+            variants={iconVariants(2.5)}
+            className="p-4">
+                <DiGit  className="text-5xl lg:text-6xl text-stone-500" />
+            </motion.div>
+            <motion.div  
+            initial="initial"
+            animate="animate"
+            variants={iconVariants(2)}
+            className="p-4">
+                <DiJava  className="text-5xl lg:text-6xl text-red-500" />
             </motion.div>
 
             
