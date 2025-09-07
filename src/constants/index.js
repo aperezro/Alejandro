@@ -14,7 +14,7 @@ export const EXPERIENCES = [
     year: "May 2025 - Present",
     role: "Co-Founder & Software Engineer",
     company: "Sazón Marketing",
-    description: `Led a team in developing and maintaining web applications using JavaScript, React.js, and Node.js. Implemented RESTful APIs and integrated with MongoDB databases. Collaborated with stakeholders to define project requirements and timelines.`,
+    description: `Co-founded Sazón Marketing, specializing in website consulting and management. Rebuilt e-commerce site for Cucara Macara using React/Hydrogen, improving SEO and increasing online traffic by 35%. Integrated inventory APIs for Blue Diamond Luxury, enabling $3M of inventory to be synced and sold online.`,
     technologies: ["Javascript", "React.js", "Next.js", "mongoDB", "Hydrogen", "Shopify", "CSS"],
   },
   {
