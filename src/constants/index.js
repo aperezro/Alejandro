@@ -2,6 +2,10 @@ import project1 from "../assets/projects/Mannys_Quest_Cover.png";
 import project2 from "../assets/projects/LiftMateLogo.png";
 import project3 from "../assets/projects/Roomba.png";
 import project4 from "../assets/projects/ps4controller.png";
+import club1 from "../assets/clubs/PRSA.png";
+import club2 from "../assets/clubs/deptresidence.png";
+import club3 from "../assets/clubs/ALD.png";
+import club4 from "../assets/clubs/lead.png";
 
 export const HERO_CONTENT = `I am a passionate full stack developer with a knack for crafting robust and scalable web applications. With 5 years of hands-on experience, I have honed my skills in front-end technologies like React and Next.js, as well as back-end technologies like Node.js, MySQL, and MongoDB. My goal is to leverage my expertise to create innovative solutions that drive business growth and deliver exceptional user experiences.`;
 
@@ -19,7 +23,7 @@ export const EXPERIENCES = [
   },
   {
     year: "January 2025 - Present",
-    role: "Lead Web Developer",
+    role: "Lead Software Engineer",
     company: "Desi Eats",
     description: `Led the design and development of Desi Eats' comprehensive website, focusing on user experience.
 Collaborated with team members to implement features based on user feedback, enhancing functionality.
@@ -31,7 +35,7 @@ Developed a calorie tracker and calculator, and prototyped online checkout and f
     year: "August 2024 - Present",
     role: "Resident Assistant",
     company: "Iowa State University Department of Residence",
-    description: `Fostered a positive living environment for over 700 residents each year, promoting community spirit and respect for diverse backgrounds. Addressed roommate conflicts and residents’ concerns, promoting open communication and fostering a sense of belonging. Organized engaging social programs to build relationships and encourage resident participation. Mentored new students by providing guidance on academic success and adapting to university life.`,
+    description: `Fostered a positive living environment for over 700 residents each year, promoting community spirit and respect for diverse backgrounds. Led a floor of 56 students. Addressed roommate conflicts and residents’ concerns, promoting open communication and fostering a sense of belonging. Organized engaging social programs to build relationships and encourage resident participation. Mentored new students by providing guidance on academic success and adapting to university life.`,
     technologies: ["Leadership", "Problem-Solving", "Conflict Resolution", "Public Speaking"],
   },
  
@@ -64,8 +68,33 @@ export const PROJECTS = [
     title: "Manny's Quest Game",
     image: project1,
     description:
-      "Self-taught Python and built a 2D platformer as my first coding project using Pygame.Designed and coded sprite animations, multiple levels, enemy AI, and a functional GUI. Published the game on YouTube, where classmates engaged with it by speedrunning and sharing feedback.",
+      "Self-taught Python and built a 2D platformer as my first coding project using Pygame. Designed and coded sprite animations, multiple levels, enemy AI, and a functional GUI. Published the game on YouTube, where classmates engaged with it by speedrunning and sharing feedback.",
     technologies: ["Python", "Pygame", "GUI", "UI/UX",],
+  },
+];
+
+export const CLUBS = [
+  {
+    title: "Puerto Rican Student Association (PRSA)",
+    image: club1,
+    description:
+      "Produce and edit professional Instagram Reels and photo/video content; grew account reach by [X%] and followers by [X] in [Y] months. Plan and execute a bi-weekly meeting cadence; coordinate agendas, speakers, and logistics to keep average attendance at [X–Y] members. Co-lead event planning (welcome mixers, cultural nights, service drives), managing timelines, budgets of [$X], and cross-org partnerships. Represent PRSA at campus events and with university offices to secure space, funding, and visibility.",
+    technologies: ["Leadership", "Event Planning", "Cultural Awareness", "Community Building", "Engagement"],
+  },
+  
+  {
+    title: "Alpha Lambda Delta Honor Society",
+    image: club3,
+    description:
+      "Recognized academic excellence among first-year students and promoted scholarship through various initiatives.",
+    technologies: ["Leadership", "Event Planning", "Cultural Awareness", "Community Building"],
+  },
+  {
+    title: "LEAD Leadership through Engineering Academic Diversity",
+    image: club4,
+    description:
+      "Recognized academic excellence among first-year students and promoted scholarship through various initiatives.",
+    technologies: ["Leadership", "Event Planning", "Cultural Awareness", "Community Building"],
   },
 ];
 

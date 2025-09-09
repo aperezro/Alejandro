@@ -1,9 +1,9 @@
-import { PROJECTS } from '../constants'
+import { CLUBS } from '../constants'
 import { FaYoutube } from "react-icons/fa"
 import { BiHandicap } from "react-icons/bi"
 import { motion } from "framer-motion"
 
-const Projects = () => {
+const Clubs = () => {
   return (
     <div className="pb-4">
       <motion.div 
@@ -14,13 +14,13 @@ const Projects = () => {
       >
         <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-black to-stone-500">
           <div className="rounded-2xl bg-black px-8 py-6 text-center">
-            <h2 className="animated-stone-gradient-text text-4xl">Projects</h2>
+            <h2 className="animated-stone-gradient-text text-4xl">Campus Involvement</h2>
           </div>
         </div>
       </motion.div> 
 
       <div className="max-w-full overflow-hidden px-4">
-        {PROJECTS.map((project, index) => (
+        {CLUBS.map((project, index) => (
           <div key={index} className="mb-8 flex flex-wrap items-start gap-6 lg:gap-12 lg:justify-center max-w-full">
             
             <motion.div 
@@ -95,4 +95,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default Clubs
