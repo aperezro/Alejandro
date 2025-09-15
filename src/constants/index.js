@@ -23,7 +23,7 @@ export const EXPERIENCES = [
   },
   {
     year: "January 2025 - Present",
-    role: "Lead Software Engineer",
+    role: "Lead Web Developer",
     company: "Desi Eats",
     description: `Led the design and development of Desi Eats' comprehensive website, focusing on user experience.
 Collaborated with team members to implement features based on user feedback, enhancing functionality.
