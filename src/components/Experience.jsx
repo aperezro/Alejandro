@@ -48,7 +48,7 @@ const Experience = () => {
               <p className="mb-4 text-stone-400">{experience.description}</p>
 
               
-              {index === 1 && (
+              {index === 2 && (
                 <motion.a
                   href="https://aperezro.github.io/Desi/#/" 
                   target="_blank"
