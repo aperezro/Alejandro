@@ -2,6 +2,7 @@ import project1 from "../assets/projects/Mannys_Quest_Cover.png";
 import project2 from "../assets/projects/LiftMateLogo.png";
 import project3 from "../assets/projects/Roomba.png";
 import project4 from "../assets/projects/ps4controller.png";
+import project5 from "../assets/projects/CyCourse.png";
 import club1 from "../assets/clubs/PRSA.png";
 import club2 from "../assets/clubs/deptresidence.png";
 import club3 from "../assets/clubs/ALD.png";
@@ -49,7 +50,13 @@ Developed a calorie tracker and calculator, and prototyped online checkout and f
 ];
 
 export const PROJECTS = [
-  
+   {
+    title: "CyCourse App",
+    image: project5,
+    description:
+      "Collaborated in a team of four to develop Cycourse a full-stack android application that helps Iowa State Students create class schedules, traverse campus, view professor reviews, and socialize with other students. Developed the front-end using Java and XML in Android Studio, implementing user-friendly interfaces and seamless navigation. Built the back-end with Postman and Springboot, creating RESTful APIs to handle user authentication, data storage, and retrieval. Utilized Websockets for real-time communication and notifications.",
+    technologies: ["Java", "JavaScript", "Teamwork", "Postman", "Android Studio"],
+  },
   {
     title: "Lift Mate App",
     image: project2,
