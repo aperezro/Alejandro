@@ -13,7 +13,14 @@ export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer w
 
 export const EXPERIENCES = [
 
-  
+   {
+    year: "November 2025 - Present",
+    role: "Channel UX Software Engineer",
+    company: "John Deere",
+    description: `Contribute to the development and maintenance of customer-facing Channel UX applications used across John Deere’s dealer and enterprise platforms. Collaborate with UX designers, product managers, and senior engineers to
+implement user-centered features and workflows. Develop and debug production code in a large-scale enterprise codebase, following internal engineering standards and review processes`,
+    technologies: ["Javascript", "React.js", "Playwright", "Docker", "TypeScript", "CSS"],
+  },
   {
     year: "May 2025 - Present",
     role: "Co-Founder & Software Engineer",
