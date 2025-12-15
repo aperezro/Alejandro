@@ -1,6 +1,7 @@
 import { RiReactjsLine } from 'react-icons/ri'
 import { TbBrandNextjs } from 'react-icons/tb'
 import { FaNodeJs } from 'react-icons/fa'
+import { FaDocker } from "react-icons/fa";
 import { SiMongodb } from 'react-icons/si'
 import { FaShopify } from "react-icons/fa";
 import { IoLogoFirebase } from "react-icons/io5";
@@ -144,6 +145,13 @@ const Technologies = () => {
             variants={iconVariants(2)}
             className="p-4">
                 <DiJava  className="text-5xl lg:text-6xl text-red-500" />
+            </motion.div>
+             <motion.div  
+            initial="initial"
+            animate="animate"
+            variants={iconVariants(1.5)}
+            className="p-4">
+                <FaDocker className="text-5xl lg:text-6xl text-blue-500" />
             </motion.div>
 
             
