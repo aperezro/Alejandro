@@ -26,8 +26,17 @@ const Experience = () => {
             initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
             transition={{ duration: 1, delay: index * 0.2 }}
           >
-            <div className="w-full lg:w-1/4">
+            <div className="w-full lg:w-1/4 flex flex-col-reverse lg:flex-col">
               <p className="mb-2 text-sm text-stone-400">{experience.year}</p>
+              {experience.image && (
+                <div className="mb-4 flex justify-start">
+                  <img 
+                    src={experience.image} 
+                    alt={experience.company}
+                    className="max-w-[100px] max-h-[75px] lg:max-w-[200px] lg:max-h-[150px] object-contain lg:translate-y-3"
+                  />
+                </div>
+              )}
             </div>
 
             <div className="w-full max-w-xl lg:w-3/4 min-w-0">

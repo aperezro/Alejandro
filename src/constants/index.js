@@ -4,9 +4,12 @@ import project3 from "../assets/projects/Roomba.png";
 import project4 from "../assets/projects/ps4controller.png";
 import project5 from "../assets/projects/CyCourse.png";
 import club1 from "../assets/clubs/PRSA.png";
-import club2 from "../assets/clubs/deptresidence.png";
 import club3 from "../assets/clubs/ALD.png";
 import club4 from "../assets/clubs/lead.png";
+import job1 from "../assets/jobs/deere.png";
+import job2 from "../assets/jobs/sazon.png";
+import job3 from "../assets/jobs/desi_logo.png";
+import job4 from "../assets/jobs/deptresidence.png";
 
 export const HERO_CONTENT = `I am a passionate full stack developer with a knack for crafting robust and scalable web applications. With 5 years of hands-on experience, I have honed my skills in front-end technologies like React and Next.js, as well as back-end technologies like Node.js, MySQL, and MongoDB. My goal is to leverage my expertise to create innovative solutions that drive business growth and deliver exceptional user experiences.`;
 
@@ -18,7 +21,8 @@ export const EXPERIENCES = [
     year: "November 2025 - Present",
     role: "Channel UX Software Engineer",
     company: "John Deere",
-    description: `Contribute to the development and maintenance of customer-facing Channel UX applications used across John Deere’s dealer and enterprise platforms. Collaborate with UX designers, product managers, and senior engineers to
+    image: job1,
+    description: `Contribute to the development and maintenance of customer-facing Channel UX applications used across John Deere's dealer and enterprise platforms. Collaborate with UX designers, product managers, and senior engineers to
 implement user-centered features and workflows. Develop and debug production code in a large-scale enterprise codebase, following internal engineering standards and review processes`,
     technologies: ["Javascript", "React.js", "Playwright", "Docker", "TypeScript", "CSS"],
   },
@@ -26,6 +30,7 @@ implement user-centered features and workflows. Develop and debug production cod
     year: "May 2025 - Present",
     role: "Co-Founder & Software Engineer",
     company: "Sazón Marketing",
+    image: job2,
     description: `Co-founded Sazón Marketing, specializing in website consulting and management. Rebuilt e-commerce site for Cucara Macara using React/Hydrogen, improving SEO and increasing online traffic by 35%. Integrated inventory APIs for Blue Diamond Luxury, enabling $3M of inventory to be synced and sold online.`,
     technologies: ["Javascript", "React.js", "Next.js", "mongoDB", "Hydrogen", "Shopify", "CSS"],
   },
@@ -33,6 +38,7 @@ implement user-centered features and workflows. Develop and debug production cod
     year: "January 2025 - Present",
     role: "Lead Web Developer",
     company: "Desi Eats",
+    image: job3,
     description: `Led the design and development of Desi Eats' comprehensive website, focusing on user experience.
 Collaborated with team members to implement features based on user feedback, enhancing functionality.
 Managed secure user login systems and database operations, ensuring data integrity.
@@ -43,7 +49,8 @@ Developed a calorie tracker and calculator, and prototyped online checkout and f
     year: "August 2024 - Present",
     role: "Resident Assistant",
     company: "Iowa State University Department of Residence",
-    description: `Fostered a positive living environment for over 700 residents each year, promoting community spirit and respect for diverse backgrounds. Led a floor of 56 students. Addressed roommate conflicts and residents’ concerns, promoting open communication and fostering a sense of belonging. Organized engaging social programs to build relationships and encourage resident participation. Mentored new students by providing guidance on academic success and adapting to university life.`,
+    image: job4,
+    description: `Fostered a positive living environment for over 700 residents each year, promoting community spirit and respect for diverse backgrounds. Led a floor of 56 students. Addressed roommate conflicts and residents' concerns, promoting open communication and fostering a sense of belonging. Organized engaging social programs to build relationships and encourage resident participation. Mentored new students by providing guidance on academic success and adapting to university life.`,
     technologies: ["Leadership", "Problem-Solving", "Conflict Resolution", "Public Speaking"],
   },
  
