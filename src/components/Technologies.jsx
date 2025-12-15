@@ -76,13 +76,7 @@ const Technologies = () => {
                 <TbBrandNextjs className="text-5xl lg:text-6xl" />
             </motion.div>
 
-            <motion.div 
-            initial="initial"
-            animate="animate"
-            variants={iconVariants(2.5)}
-            className="p-4">
-                <SiMongodb className="text-5xl lg:text-6xl text-cyan-500" />
-            </motion.div>
+            
             
 
             <motion.div 
@@ -132,6 +126,14 @@ const Technologies = () => {
             className="p-4">
                 <FaPython  className="text-5xl lg:text-6xl text-yellow-500" />
             </motion.div>
+            <motion.div 
+            initial="initial"
+            animate="animate"
+            variants={iconVariants(2.5)}
+            className="p-4">
+                <SiMongodb className="text-5xl lg:text-6xl text-green-500" />
+            </motion.div>
+            
             <motion.div  
             initial="initial"
             animate="animate"
