@@ -33,8 +33,12 @@ const Projects = () => {
                 src={project.image} 
                 alt={project.title}
                 width={250}
-                height={250}
-                className="mb-6 rounded max-w-full h-auto"
+                height={180}
+                className={`mb-6 max-w-full rounded ${
+                  project.title === "CyCourse App"
+                    ? "h-auto w-[250px]"
+                    : "h-[180px] w-[250px] object-contain object-left"
+                }`}
               />
             </motion.div>
 

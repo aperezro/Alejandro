@@ -3,6 +3,9 @@ import project2 from "../assets/projects/LiftMateLogo.png";
 import project3 from "../assets/projects/Roomba.png";
 import project4 from "../assets/projects/ps4controller.png";
 import project5 from "../assets/projects/CyCourse.png";
+import reignition from "../assets/projects/Reignition.png";
+import unleashed from "../assets/projects/Unleashed.jpg";
+import dusklight from "../assets/projects/DuskLight.png";
 import club1 from "../assets/clubs/PRSA.png";
 import club3 from "../assets/clubs/ALD.png";
 import club4 from "../assets/clubs/lead.png";
@@ -57,6 +60,24 @@ Developed a calorie tracker and calculator, and prototyped online checkout and f
 ];
 
 export const PROJECTS = [
+  {
+    title: "Reignition",
+    image: reignition,
+    description: "Ported Project Reignition, a Godot 4.7 .NET game, to iPhone and iPad. Added touch controls, device-specific full-screen layouts, safe-area handling, and mobile-friendly graphics. Fixed gameplay and UI issues, including Sonic's eye alignment, the spinning jump effect, reward-screen buttons, and menu positioning. Resolved an iOS native scene-loading issue that could stall Rampage missions, added recovery options, and validated the signed build on real iPhone and iPad hardware across missions, objectives, countdowns, and touch movement.",
+    technologies: ["Technology 1", "Technology 2", "Technology 3"],
+  },
+  {
+    title: "Unleashed",
+    image: unleashed,
+    description: "Ported Unleashed Recompiled to iOS and iPadOS as a native, sideloadable ARM64 application. Reworked the iOS application lifecycle, preserved the desktop installer workflow for selecting user-provided game, update, and DLC files, and resolved startup crashes related to signing, memory mapping, graphics initialization, and platform assumptions. Replaced the Vulkan compatibility path with a native Metal renderer, translating SPIR-V shaders to Metal Shading Language and building native pipelines, resources, and presentation commands. Fixed black screens, inverted rendering, aspect-ratio issues, and background-resume freezes. Added responsive Xbox 360-inspired touch controls and validated gameplay, audio, rendering, and lifecycle transitions on real iPhone and iPad hardware.",
+    technologies: ["Technology 1", "Technology 2", "Technology 3"],
+  },
+  {
+    title: "Dusklight",
+    image: dusklight,
+    description: "Placeholder description for the Dusklight project. More project details will be added soon.",
+    technologies: ["Technology 1", "Technology 2", "Technology 3"],
+  },
    {
     title: "CyCourse App",
     image: project5,
