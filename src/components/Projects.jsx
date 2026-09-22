@@ -69,7 +69,7 @@ const Projects = () => {
                   >
                     View Footage
                   </motion.a>
-                ) : project.title === "Unleashed" && (
+                ) : project.title === "Unleashed Recompiled" && (
                   <button
                     type="button"
                     disabled
@@ -79,7 +79,7 @@ const Projects = () => {
                   </button>
                 )}
 
-                {project.title === "Reignition" && (
+                {project.title === "Project Reignition" && (
                   <button
                     type="button"
                     disabled

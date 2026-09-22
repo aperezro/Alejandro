@@ -61,7 +61,7 @@ Developed a calorie tracker and calculator, and prototyped online checkout and f
 
 export const PROJECTS = [
   {
-    title: "Reignition",
+    title: "Project Reignition",
     image: reignition,
     footageUrl: "https://lnkd.in/p/gy4gcpfi",
     downloadUrl: "",
@@ -69,7 +69,7 @@ export const PROJECTS = [
     technologies: ["Godot", ".NET", "C#", "Xcode"],
   },
   {
-    title: "Unleashed",
+    title: "Unleashed Recompiled",
     image: unleashed,
     footageUrl: "",
     description: "Ported Unleashed Recompiled to iOS and iPadOS as a native, sideloadable ARM64 application. Reworked the iOS application lifecycle, preserved the desktop installer workflow for selecting user-provided game, update, and DLC files, and resolved startup crashes related to signing, memory mapping, graphics initialization, and platform assumptions. Replaced the Vulkan compatibility path with a native Metal renderer, translating SPIR-V shaders to Metal Shading Language and building native pipelines, resources, and presentation commands. Fixed black screens, inverted rendering, aspect-ratio issues, and background-resume freezes. Added responsive Xbox 360-inspired touch controls and validated gameplay, audio, rendering, and lifecycle transitions on real iPhone and iPad hardware.",
@@ -145,7 +145,7 @@ export const CLUBS = [
 ];
 
 export const CONTACT = {
-  address: "221 Beyer CT RM 4801, Ames Iowa, 50012 ",
+  address: "122 Hayward Ave 508, Ames Iowa, 50014",
   phoneNo: "+1 787 234 8861 ",
   email: "ap204898@gmail.com",
 };
