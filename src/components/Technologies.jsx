@@ -10,6 +10,8 @@ import { FaHtml5 } from "react-icons/fa";
 import { FaPython } from "react-icons/fa";
 import { DiGit } from "react-icons/di";
 import { DiJava } from "react-icons/di";
+import { FaAws } from "react-icons/fa6";
+import { SiXcode } from "react-icons/si";
 
 
 import{animate, motion} from 'framer-motion'
@@ -154,6 +156,22 @@ const Technologies = () => {
             variants={iconVariants(1.5)}
             className="p-4">
                 <FaDocker className="text-5xl lg:text-6xl text-blue-500" />
+            </motion.div>
+
+            <motion.div  
+            initial="initial"
+            animate="animate"
+            variants={iconVariants(3)}
+            className="p-4">
+                <FaAws className="text-5xl lg:text-6xl text-orange-500" />
+            </motion.div>
+
+            <motion.div  
+            initial="initial"
+            animate="animate"
+            variants={iconVariants(2.5)}
+            className="p-4">
+                <SiXcode className="text-5xl lg:text-6xl text-blue-400" />
             </motion.div>
 
             

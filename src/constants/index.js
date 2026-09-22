@@ -27,7 +27,7 @@ export const EXPERIENCES = [
     image: job1,
     description: `Contribute to the development and maintenance of customer-facing Channel UX applications used across John Deere's dealer and enterprise platforms. Collaborate with UX designers, product managers, and senior engineers to
 implement user-centered features and workflows. Develop and debug production code in a large-scale enterprise codebase, following internal engineering standards and review processes`,
-    technologies: ["Javascript", "React.js", "Playwright", "Docker", "TypeScript", "CSS"],
+    technologies: ["Javascript", "React.js", "Playwright", "Docker", "TypeScript", "AWS", "Datadog"],
   },
   {
     year: "May 2025 - Present",
@@ -49,7 +49,7 @@ Developed a calorie tracker and calculator, and prototyped online checkout and f
     technologies: ["HTML", "CSS", "Javascript", "React.js", "Next.js", "mongoDB", "mySQL"],
   },
   {
-    year: "August 2024 - Present",
+    year: "August 2024 - August 2026",
     role: "Resident Assistant",
     company: "Iowa State University Department of Residence",
     image: job4,
@@ -63,20 +63,24 @@ export const PROJECTS = [
   {
     title: "Reignition",
     image: reignition,
+    footageUrl: "https://lnkd.in/p/gy4gcpfi",
+    downloadUrl: "",
     description: "Ported Project Reignition, a Godot 4.7 .NET game, to iPhone and iPad. Added touch controls, device-specific full-screen layouts, safe-area handling, and mobile-friendly graphics. Fixed gameplay and UI issues, including Sonic's eye alignment, the spinning jump effect, reward-screen buttons, and menu positioning. Resolved an iOS native scene-loading issue that could stall Rampage missions, added recovery options, and validated the signed build on real iPhone and iPad hardware across missions, objectives, countdowns, and touch movement.",
-    technologies: ["Technology 1", "Technology 2", "Technology 3"],
+    technologies: ["Godot", ".NET", "C#", "Xcode"],
   },
   {
     title: "Unleashed",
     image: unleashed,
+    footageUrl: "",
     description: "Ported Unleashed Recompiled to iOS and iPadOS as a native, sideloadable ARM64 application. Reworked the iOS application lifecycle, preserved the desktop installer workflow for selecting user-provided game, update, and DLC files, and resolved startup crashes related to signing, memory mapping, graphics initialization, and platform assumptions. Replaced the Vulkan compatibility path with a native Metal renderer, translating SPIR-V shaders to Metal Shading Language and building native pipelines, resources, and presentation commands. Fixed black screens, inverted rendering, aspect-ratio issues, and background-resume freezes. Added responsive Xbox 360-inspired touch controls and validated gameplay, audio, rendering, and lifecycle transitions on real iPhone and iPad hardware.",
-    technologies: ["Technology 1", "Technology 2", "Technology 3"],
+    technologies: ["Xcode", "C++", "Metal", "Vulkan"],
   },
   {
     title: "Dusklight",
     image: dusklight,
-    description: "Placeholder description for the Dusklight project. More project details will be added soon.",
-    technologies: ["Technology 1", "Technology 2", "Technology 3"],
+    footageUrl: "https://lnkd.in/p/g9F5nX3z",
+    description: "Contributed to an open-source project bringing a GameCube-era title to modern platforms, including native deployment on iPhone and iPad. Implemented touchscreen controls and mobile UI overlays, improved iOS/iPadOS deployment and ARM64 builds, added support for high-resolution 4K textures on mobile, and debugged platform-specific crashes and rendering issues. Investigated texture handling, memory behavior, build artifacts, signing, and Apple-specific graphics quirks before validating performance and stability across mobile hardware at high refresh rates.",
+    technologies: ["C++", "C", "Xcode"],
   },
    {
     title: "CyCourse App",

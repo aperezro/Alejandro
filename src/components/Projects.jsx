@@ -58,6 +58,37 @@ const Projects = () => {
                   </span>
                 ))}
 
+                {project.footageUrl ? (
+                  <motion.a
+                    href={project.footageUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-2 inline-block rounded-lg bg-yellow-500 px-4 py-2 text-sm font-medium text-black"
+                    whileHover={{ scale: 1.1, boxShadow: "0px 0px 8px rgba(234,179,8,0.8)" }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    View Footage
+                  </motion.a>
+                ) : project.title === "Unleashed" && (
+                  <button
+                    type="button"
+                    disabled
+                    className="ml-2 inline-block cursor-not-allowed rounded-lg bg-stone-700 px-4 py-2 text-sm font-medium text-stone-300"
+                  >
+                    Footage Coming Soon
+                  </button>
+                )}
+
+                {project.title === "Reignition" && (
+                  <button
+                    type="button"
+                    disabled
+                    className="ml-2 inline-block cursor-not-allowed rounded-lg bg-stone-700 px-4 py-2 text-sm font-medium text-stone-300"
+                  >
+                    Download Game Coming Soon
+                  </button>
+                )}
+
                 
                 {project.title === "Manny's Quest Game" && (
                   <motion.button
