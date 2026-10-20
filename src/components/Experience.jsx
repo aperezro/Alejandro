@@ -27,7 +27,7 @@ const Experience = () => {
             transition={{ duration: 1, delay: index * 0.2 }}
           >
             <div className="w-full lg:w-1/4 flex flex-col-reverse lg:flex-col">
-              <p className="mb-2 text-sm text-stone-400">{experience.year}</p>
+              <p className="mb-2 text-base font-bold text-stone-200">{experience.year}</p>
               {experience.image && (
                 <div className="mb-4 flex justify-start">
                   <img 
