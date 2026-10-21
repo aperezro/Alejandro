@@ -6,7 +6,6 @@ import Hero from './components/Hero'
 import Technologies from './components/Technologies'
 import Projects from './components/Projects'
 import Experience from './components/Experience'
-import Clubs from './components/Clubs'
 import Contact from './components/Contact'
 import { ABOUT_TEXT } from "./constants"
 import Aurora from './components/Aurora'
@@ -58,7 +57,6 @@ const App = () => {
         <Hero />
         <Projects />
         <section id="experience"><Experience /></section>
-        <Clubs />
         <section id="about" className="mx-auto max-w-6xl pt-12">
           <h2 className="animated-stone-gradient-text mb-6 text-center text-4xl">About</h2>
           <p className="mx-auto max-w-3xl text-lg leading-relaxed text-stone-300">{ABOUT_TEXT}</p>

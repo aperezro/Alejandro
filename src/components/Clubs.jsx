@@ -5,21 +5,8 @@ import { motion as Motion } from "framer-motion"
 
 const Clubs = () => {
   return (
-    <section id="campus-involvement" aria-labelledby="campus-involvement-title" className="pb-4">
-      <Motion.div
-        className="my-20 flex justify-center"
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -100 }}
-        transition={{ duration: 1.5 }}
-      >
-        <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-black to-stone-500">
-          <div className="rounded-2xl bg-black px-8 py-6 text-center">
-            <h2 id="campus-involvement-title" className="animated-stone-gradient-text text-4xl">Campus Involvement</h2>
-          </div>
-        </div>
-      </Motion.div>
-
-      <div className="max-w-full overflow-hidden px-4">
+    <div className="pb-4">
+      <div className="max-w-full overflow-hidden">
         {CLUBS.map((project, index) => (
           <div key={index} className="mb-8 flex flex-wrap items-start gap-6 lg:gap-12 lg:justify-center max-w-full">
 
@@ -46,7 +33,7 @@ const Clubs = () => {
               transition={{duration: 1}}
               className="w-full max-w-xl lg:w-3/4 min-w-0"
             >
-              <h3 className="mb-2 font-semibold text-2xl">{project.title}</h3>
+              <h4 className="mb-2 font-semibold text-2xl">{project.title}</h4>
               {project.role && <p className="mb-1 text-lg font-semibold text-stone-200">{project.role}</p>}
               {project.year && <p className="mb-4 text-base font-bold text-stone-300">{project.year}</p>}
               <p className='mb-4 leading-relaxed text-stone-300'>{project.description}</p>
@@ -96,7 +83,7 @@ const Clubs = () => {
           </div>
         ))}
       </div>
-    </section>
+    </div>
   )
 }
 

@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import Clubs from "./Clubs";
 import { EXPERIENCES } from "../constants";
 import { motion as Motion } from "framer-motion";
 
@@ -19,10 +19,16 @@ const Experience = () => {
       </Motion.div>
 
       <div>
-        {EXPERIENCES.map((experience, index) => (
-          <Fragment key={experience.company}>
-          {(index === 0 || experience.role === 'Resident Assistant') && <h3 className="experience-group-title">{index === 0 ? 'Professional software engineering' : 'Leadership & campus experience'}</h3>}
+        {[
+          { id: 'professional-experience', title: 'Professional software engineering', entries: EXPERIENCES.filter(entry => entry.role !== 'Resident Assistant') },
+          { id: 'campus-involvement', title: 'Leadership & Campus Involvement', entries: EXPERIENCES.filter(entry => entry.role === 'Resident Assistant') },
+        ].map(group => <section key={group.id} id={group.id} aria-labelledby={`${group.id}-title`}>
+          <h3 id={`${group.id}-title`} className="experience-group-title">{group.title}</h3>
+          {group.entries.map(experience => {
+            const index = EXPERIENCES.indexOf(experience);
+            return (
           <Motion.div
+            key={experience.company}
             className={`experience-entry mb-8 flex flex-wrap lg:justify-center ${index === 0 ? "experience-current" : ""}`}
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
@@ -81,8 +87,10 @@ const Experience = () => {
               </div>
             </div>
           </Motion.div>
-          </Fragment>
-        ))}
+            );
+          })}
+          {group.id === 'campus-involvement' && <Clubs />}
+        </section>)}
       </div>
     </div>
   );
