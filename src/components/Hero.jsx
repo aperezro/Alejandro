@@ -1,3 +1,4 @@
+import { IoHammerSharp } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { FaArrowDown } from "react-icons/fa";
@@ -30,7 +31,7 @@ const Hero = () => {
         <p className="text-2xl font-medium text-stone-100 sm:text-3xl">Software Engineer</p>
         <p className="mx-auto my-6 max-w-xl text-left text-lg leading-relaxed text-stone-300 lg:mx-0">{HERO_CONTENT}</p>
         <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-          <a href="#projects" className="hero-action rounded-full bg-white text-lg text-stone-800 shadow-sm transition hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">View Projects <span aria-hidden="true">↗</span></a>
+          <a href="#projects" className="hero-action rounded-full bg-white text-lg text-stone-800 shadow-sm transition hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">View Projects <IoHammerSharp aria-hidden="true" className="inline-block shrink-0 align-[-0.125em]" /></a>
           <motion.a
             href={`${import.meta.env.BASE_URL}resume.pdf`}
             target="_blank"
@@ -48,8 +49,8 @@ const Hero = () => {
       </div>
       <div className="order-1 mx-auto w-full max-w-[416px] min-w-0 rounded-3xl bg-gradient-to-r from-stone-900 via-stone-300 to-stone-900 p-[3px] shadow-2xl lg:order-2 lg:mx-0 lg:max-w-none">
         <div className="overflow-hidden rounded-[21px] bg-stone-950">
-          <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 text-[10px] lg:px-5 lg:py-4 lg:text-xs font-semibold uppercase tracking-widest text-stone-300">
-            <span><span className="lg:hidden">Featured project</span><span className="hidden lg:inline">Featured engineering project</span></span><span className="text-green-300">Native iOS port</span>
+          <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 lg:px-5 lg:py-4 text-stone-300">
+            <span className="text-sm font-semibold uppercase tracking-wide lg:text-base"><span className="lg:hidden">Featured project</span><span className="hidden lg:inline">Featured engineering project</span></span><span className="text-[10px] font-semibold uppercase tracking-widest text-green-300 lg:text-xs">Native iOS port</span>
           </div>
           <div className="relative aspect-[5/4] bg-black lg:aspect-[4/3]">
             <img src={`${media}sonic-unleashed-fallback.jpg`} alt="Sonic Unleashed cover art" className="absolute inset-0 h-full w-full object-contain" />
@@ -57,7 +58,7 @@ const Hero = () => {
             {!failed && !reducedMotion && <button type="button" onClick={togglePlayback} className="absolute bottom-3 right-3 rounded-full border border-white/30 bg-black/80 px-4 py-2 text-sm text-white hover:bg-black" aria-label={playing ? "Pause gameplay preview" : "Play gameplay preview"}>{playing ? "Pause" : "Play preview"}</button>}
           </div>
           <a href="#/projects/unleashed-recompiled" className="block px-4 py-3 transition lg:px-5 lg:py-5 hover:bg-stone-900">
-            <h2 className="text-base font-semibold text-white lg:text-xl">Sonic Unleashed — iOS Port <span aria-hidden="true">↗</span></h2>
+            <h2 className="text-base font-semibold text-white lg:text-xl">Sonic Unleashed — iOS Port <IoHammerSharp aria-hidden="true" className="inline-block shrink-0 align-[-0.125em]" /></h2>
             <p className="mt-2 hidden text-sm leading-relaxed text-stone-400 lg:block">Unleashed Recompiled running on iOS with native Metal rendering and touchscreen controls.</p>
           </a>
         </div>

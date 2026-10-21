@@ -1,3 +1,4 @@
+import { IoHammerSharp } from "react-icons/io5";
 import { PROJECTS, PROJECT_PAGES } from '../constants'
 import { BiHandicap } from "react-icons/bi"
 import { motion } from "framer-motion"
@@ -63,7 +64,7 @@ const Projects = () => {
                   className="inline-block rounded-full bg-white px-5 py-2 text-sm font-semibold text-black hover:bg-stone-200"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                >View Project <span aria-hidden="true">↗</span></motion.a>}
+                >View Project <IoHammerSharp aria-hidden="true" className="inline-block shrink-0 align-[-0.125em]" /></motion.a>}
                 {project.footageUrl && !['project-reignition', 'dusklight'].includes(project.slug) && (
                   <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-stone-600 px-4 py-2 text-sm hover:bg-stone-800">View Footage</a>
                 )}

@@ -1,3 +1,4 @@
+import { IoHammerSharp } from "react-icons/io5";
 import { createPortal } from 'react-dom';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
@@ -131,7 +132,7 @@ const Navbar = ({ route }) => {
           <button ref={toggleRef} type="button" aria-label="Browse project pages" aria-expanded={open} aria-controls="project-dropdown" onClick={() => setOpen(value => !value)} className="relative z-10 rounded-full py-3 pl-2 pr-4"><FaChevronDown className={`text-[10px] transition-transform ${open ? 'rotate-180' : ''}`} /></button>
           <AnimatePresence>
             {open && <motion.div id="project-dropdown" initial={{ opacity: 0, y: reducedMotion ? 0 : -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reducedMotion ? 0 : -8 }} transition={{ duration: 0.18 }} className="project-dropdown absolute left-0 top-[calc(100%+12px)] z-50 w-[calc(100vw-96px)] sm:w-80 rounded-2xl border border-white/20 bg-stone-950 p-2 shadow-2xl">
-              <a href="#projects" onClick={closeDropdown} className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10">All Projects ↗</a>
+              <a href="#projects" onClick={closeDropdown} className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10">All Projects <IoHammerSharp aria-hidden="true" className="ml-1 inline-block align-[-0.125em]" /></a>
               <div className="my-1 border-t border-white/10" />
               {PROJECT_PAGES.map(project => <a key={project.slug} href={`#/projects/${project.slug}`} aria-current={route.slug === project.slug ? 'page' : undefined} onClick={closeDropdown} className={`block rounded-xl px-4 py-3 text-sm leading-snug hover:bg-white hover:text-black focus-visible:bg-white focus-visible:text-black ${route.slug === project.slug ? 'bg-white/15 text-white' : 'text-stone-300'}`}>{projectPageTitle(project)}</a>)}
             </motion.div>}

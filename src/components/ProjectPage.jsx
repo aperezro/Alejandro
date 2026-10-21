@@ -1,3 +1,4 @@
+import { IoHammerSharp } from "react-icons/io5";
 import { useEffect } from 'react';
 import { PROJECT_PAGES } from '../constants';
 import FeaturedProject from './FeaturedProject';
@@ -21,12 +22,12 @@ export default function ProjectPage({ slug }) {
             <div className="rounded-3xl border border-stone-800 bg-black/70 p-6 sm:p-8">
               <h2 className="mb-5 text-2xl font-semibold text-white">About the project</h2>
               <div className="space-y-4 text-base leading-relaxed text-stone-300">{project.description.split(/\.\s+(?=[A-Z])/).map((sentence, index) => <p key={index}>{sentence.endsWith('.') ? sentence : `${sentence}.`}</p>)}</div>
-              {project.footageUrl && <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="mt-7 inline-block rounded-full bg-white px-6 py-3 font-semibold text-black hover:bg-stone-200">Watch Demonstration ↗</a>}
+              {project.footageUrl && <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="mt-7 inline-block rounded-full bg-white px-6 py-3 font-semibold text-black hover:bg-stone-200">Watch Demonstration <IoHammerSharp aria-hidden="true" className="ml-1 inline-block align-[-0.125em]" /></a>}
             </div>
           </div>
         </article>
       )}
-      {project && <nav aria-label="More projects" className="mt-12 border-t border-stone-800 pt-8"><h2 className="mb-5 text-lg font-semibold text-white">Explore more projects</h2><div className="flex flex-wrap gap-3">{PROJECT_PAGES.filter(item => item.slug !== slug).map(item => <a key={item.slug} href={`#/projects/${item.slug}`} className="rounded-full border border-stone-700 bg-black/60 px-4 py-2 text-sm hover:border-white hover:text-white">{item.title} ↗</a>)}</div></nav>}
+      {project && <nav aria-label="More projects" className="mt-12 border-t border-stone-800 pt-8"><h2 className="mb-5 text-lg font-semibold text-white">Explore more projects</h2><div className="flex flex-wrap gap-3">{PROJECT_PAGES.filter(item => item.slug !== slug).map(item => <a key={item.slug} href={`#/projects/${item.slug}`} className="rounded-full border border-stone-700 bg-black/60 px-4 py-2 text-sm hover:border-white hover:text-white">{item.title} <IoHammerSharp aria-hidden="true" className="ml-1 inline-block align-[-0.125em]" /></a>)}</div></nav>}
     </div>
   );
 }
