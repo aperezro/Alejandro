@@ -248,7 +248,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid #b19eef; outline-offs
   overflow: hidden;
 }
 .mobile-navigation:not([open]) { display: none; }
-.mobile-navigation[open] { display: flex; justify-content: flex-end; }
+.mobile-navigation[open] { display: flex; justify-content: flex-start; }
 .mobile-navigation::backdrop { background: transparent; }
 .mobile-navigation-shade {
   position: absolute;
@@ -265,8 +265,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid #b19eef; outline-offs
   padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
   overflow-y: auto;
   background: #0c0a09;
-  border-left: 1px solid #44403c;
-  box-shadow: -20px 0 70px rgba(0, 0, 0, 0.4);
+  border-right: 1px solid #44403c;
+  box-shadow: 20px 0 70px rgba(0, 0, 0, 0.4);
 }
 .mobile-menu-link { display: block; border-radius: 12px; padding: 12px; font-size: 18px; }
 .mobile-menu-link:hover, .mobile-menu-link:focus-visible { background: white; color: black; }

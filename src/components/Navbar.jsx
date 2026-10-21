@@ -67,7 +67,7 @@ const Navbar = ({ route }) => {
     const currentOpacity = getComputedStyle(shade).opacity;
     mobileAnimationsRef.current.forEach(animation => animation.cancel());
     mobileAnimationsRef.current = [];
-    const duration = reducedMotion || window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : mobileOpen ? 340 : 260;
+    const duration = reducedMotion || window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 500;
     let cancelled = false;
 
     if (mobileOpen) {
@@ -79,17 +79,17 @@ const Navbar = ({ route }) => {
       // autofocus cannot scroll the drawer sideways during the first frame.
       if (!wasOpen) dialog.showModal();
       const slide = panel.animate([
-        { transform: wasOpen ? currentTransform : `translate3d(${panel.getBoundingClientRect().width}px, 0, 0)` },
+        { transform: wasOpen ? currentTransform : `translate3d(-${panel.getBoundingClientRect().width}px, 0, 0)` },
         { transform: 'translate3d(0, 0, 0)' }
-      ], { duration, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'both' });
-      const fade = shade.animate([{ opacity: wasOpen ? currentOpacity : 0 }, { opacity: 1 }], { duration, easing: 'ease-out', fill: 'both' });
+      ], { duration, easing: 'ease-in-out', fill: 'both' });
+      const fade = shade.animate([{ opacity: wasOpen ? currentOpacity : 0 }, { opacity: 1 }], { duration, easing: 'ease-in-out', fill: 'both' });
       mobileAnimationsRef.current = [slide, fade];
     } else if (wasOpen) {
       const slide = panel.animate([
         { transform: currentTransform },
-        { transform: 'translate3d(100%, 0, 0)' }
-      ], { duration, easing: 'cubic-bezier(0.4, 0, 1, 1)', fill: 'both' });
-      const fade = shade.animate([{ opacity: currentOpacity }, { opacity: 0 }], { duration, easing: 'ease-in', fill: 'both' });
+        { transform: `translate3d(-${panel.getBoundingClientRect().width}px, 0, 0)` }
+      ], { duration, easing: 'ease-in-out', fill: 'both' });
+      const fade = shade.animate([{ opacity: currentOpacity }, { opacity: 0 }], { duration, easing: 'ease-in-out', fill: 'both' });
       mobileAnimationsRef.current = [slide, fade];
       Promise.all([slide.finished, fade.finished]).then(() => {
         if (cancelled) return;
@@ -122,9 +122,12 @@ const Navbar = ({ route }) => {
   return (
     <div className="site-header fixed inset-x-0 top-0 z-40" data-hidden={headerHidden} onFocusCapture={() => setHeaderHidden(false)}>
     <header className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-8">
-      <a href="#home" aria-label="Alejandro Pérez home" onClick={closeDropdown} className="flex items-center gap-2 font-semibold text-white">
-        <img src={logo} width={70} height={35} alt="" /><span className="hidden xl:inline">Alejandro Pérez</span>
-      </a>
+      <div className="flex items-center gap-3">
+        <button type="button" aria-label="Open navigation menu" aria-expanded={mobileOpen} aria-controls="mobile-navigation" onClick={() => setMobileOpen(true)} className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black text-xl text-white lg:hidden"><FaBars /></button>
+        <a href="#home" aria-label="Alejandro Pérez home" onClick={closeDropdown} className="flex items-center gap-2 font-semibold text-white">
+          <img src={logo} width={70} height={35} alt="" /><span className="hidden xl:inline">Alejandro Pérez</span>
+        </a>
+      </div>
       <nav aria-label="Main navigation" className="nav-pill order-3 hidden w-full flex-wrap items-center justify-center gap-1 rounded-[28px] border border-white/15 bg-black p-1.5 shadow-lg lg:order-none lg:flex lg:w-auto" onMouseLeave={() => setHighlight(null)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setHighlight(null); }}>
         <div ref={dropdownRef} className={itemClass('Projects')} onMouseEnter={() => setHighlight('Projects')} onFocus={() => setHighlight('Projects')}>
           {pill('Projects')}
@@ -146,7 +149,6 @@ const Navbar = ({ route }) => {
       <div className="flex gap-4 text-2xl">
         <a href="https://www.linkedin.com/in/aperezro/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="inline-flex items-center justify-center transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-[0_0_14px_rgba(255,255,255,0.85)] focus-visible:scale-110"><FaLinkedin /></a>
         <a href="https://github.com/aperezro/" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="inline-flex items-center justify-center transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-[0_0_14px_rgba(255,255,255,0.85)] focus-visible:scale-110"><FaGithub /></a>
-        <button type="button" aria-label="Open navigation menu" aria-expanded={mobileOpen} aria-controls="mobile-navigation" onClick={() => setMobileOpen(true)} className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black text-xl text-white lg:hidden"><FaBars /></button>
       </div>
       {createPortal(
         <dialog ref={dialogRef} id="mobile-navigation" aria-label="Mobile navigation" className="mobile-navigation" onCancel={event => { event.preventDefault(); setMobileOpen(false); }} onClose={() => setMobileOpen(false)} onClick={event => { if (event.target === event.currentTarget || event.target.classList.contains('mobile-navigation-shade')) setMobileOpen(false); }}>
