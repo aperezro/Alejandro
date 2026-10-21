@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { FaExternalLinkAlt } from 'react-icons/fa';
+import { IoGameController } from 'react-icons/io5';
 import reignitionLogo from '../assets/projects/reignition-logo.png';
 import Aurora from './Aurora';
 import './ReignitionProject.css';
 
 const PORTFOLIO_REPOSITORY = 'https://github.com/aperezro/Alejandro';
+const REIGNITION_RELEASE = 'https://github.com/aperezro/project-reignition/releases/tag/ios-v1.0.6-build2';
 const GODOT_IOS_EXPORT_GUIDE = 'https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_ios.html';
 const XCODE_SIGNING_GUIDE = 'https://developer.apple.com/documentation/xcode/configuring-app-signing';
 
@@ -116,6 +118,7 @@ export default function ReignitionProject({ project }) {
             {project.technologies.map(technology => <li key={technology}>{technology}</li>)}
           </ul>
           <div className="reignition-actions">
+            <a href={REIGNITION_RELEASE} target="_blank" rel="noopener noreferrer" className="reignition-button">Download Now <IoGameController aria-hidden="true" /></a>
             {project.footageUrl && <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="reignition-button">Watch Gameplay <FaExternalLinkAlt aria-hidden="true" /></a>}
             <a href="#reignition-story" className="reignition-story-link">Explore the development story</a>
           </div>
