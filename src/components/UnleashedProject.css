@@ -9,18 +9,16 @@
 .unleashed-intro { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: clamp(28px, 4vw, 64px); padding: 22px 0 54px; min-height: 600px; }
 .unleashed-logo-column { min-width: 0; text-align: center; }
 .unleashed-project-logo { width: 100%; height: auto; filter: drop-shadow(0 16px 38px #0008) drop-shadow(0 0 40px #4188ce33); }
-.unleashed-logo-caption { margin-top: 22px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #c3d8ee; }
 .unleashed-description { min-width: 0; padding: clamp(24px, 3vw, 40px); background: linear-gradient(145deg, #0e2b50e8, #0a1d39eb); border: 1px solid #a5d2ff40; border-radius: 22px; box-shadow: 0 24px 70px #020b253d; backdrop-filter: blur(8px); }
 .unleashed-eyebrow { color: #a5d8ff; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; margin-bottom: 16px; }
 .unleashed-description h1 { font-family: 'ImpactStyleRoman', 'Cinzel', sans-serif; font-size: clamp(30px, 3.3vw, 44px); font-style: italic; font-weight: 400; line-height: 1.2; letter-spacing: 0.01em; text-transform: uppercase; color: #fff; }
 .unleashed-description h1 span { color: #b8deff; }
 .unleashed-rule { height: 1px; margin: 24px 0; background: linear-gradient(90deg, #8ccfff80, #8ccfff00); }
-.unleashed-description > p:not(.unleashed-eyebrow):not(.unleashed-release-note) { color: #dbe8f5; font-size: 15px; line-height: 1.75; margin-bottom: 16px; }
+.unleashed-description > p:not(.unleashed-eyebrow) { color: #dbe8f5; font-size: 15px; line-height: 1.75; margin-bottom: 16px; }
 .unleashed-technologies { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0; list-style: none; padding: 0; }
 .unleashed-technologies li { padding: 6px 11px; border: 1px solid #a9ceec40; border-radius: 6px; color: #c9e6ff; font-size: 12px; background: #7db1ff0b; }
 .unleashed-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }
 .unleashed-download svg { width: 22px; height: 22px; }
-.unleashed-release-note { color: #9cb7d4; font-size: 11px; line-height: 1.6; margin-top: 16px; }
 .unleashed-story { padding: 24px 0 100px; }
 .unleashed-story-line { height: 1px; background: linear-gradient(90deg, transparent, #83baf170, transparent); margin-bottom: 44px; }
 .unleashed-story h2 { font-family: 'ImpactStyleRoman', 'Cinzel', sans-serif; font-size: clamp(32px, 4vw, 48px); font-style: italic; font-weight: 400; letter-spacing: 0.01em; text-align: center; text-transform: uppercase; color: #fff; }
@@ -42,6 +40,7 @@
 .unleashed-chapter-body h3 { font-family: 'ImpactStyleRoman', 'Cinzel', sans-serif; color: #fff; font-size: clamp(23px, 2.4vw, 30px); font-style: italic; line-height: 1.25; font-weight: 400; letter-spacing: 0.01em; text-transform: uppercase; margin-bottom: 22px; }
 .unleashed-chapter-body p { color: #c9d4e3; font-size: 15px; line-height: 1.85; margin: 0 0 16px; }
 .unleashed-chapter-body p:last-child { margin-bottom: 0; }
+.unleashed-chapter-body code { overflow-wrap: anywhere; font-size: 0.9em; color: #d3e9ff; }
 .unleashed-chapter-body h4 { color: #edf6ff; font-weight: 650; font-size: 16px; line-height: 1.5; margin-bottom: 10px; }
 .unleashed-chapter-body blockquote { margin: 26px 0; padding: 12px 0 12px 22px; border-left: 2px solid #8dc8ff; color: #d9ecff; font-size: clamp(21px, 2.4vw, 28px); line-height: 1.5; letter-spacing: -.025em; }
 .unleashed-chapter-body > p { max-width: 850px; }
@@ -60,9 +59,6 @@
 .unleashed-lifecycle-story dd { color: #c9d4e3; font-size: 14px; line-height: 1.8; margin: 0; }
 .unleashed-chapter-body p a { color: #9fd3ff; text-decoration: underline; text-underline-offset: 4px; }
 .unleashed-chapter-body p a:hover { color: #fff; }
-.unleashed-related-projects { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
-.unleashed-related-projects a { color: #d3e9ff; border: 1px solid #a5c8ef55; border-radius: 999px; padding: 10px 16px; font-size: 13px; }
-.unleashed-related-projects a:hover { background: #fff; color: #111; }
 @media (max-width: 1100px) { .unleashed-chapter-grid { grid-template-columns: 1fr; } }
 @media (max-width: 700px) {
   .unleashed-story-timeline::before { left: 16px; }
@@ -77,7 +73,6 @@
 @media (max-width: 899px) {
   .unleashed-intro { grid-template-columns: 1fr; gap: 30px; min-height: 0; padding-top: 8px; }
   .unleashed-logo-column { width: min(100%, 500px); margin: 0 auto; }
-  .unleashed-logo-caption { font-size: 11px; margin-top: 14px; }
   .unleashed-description { width: min(100%, 620px); margin: 0 auto; }
   .unleashed-description h1 { font-size: clamp(30px, 6vw, 42px); }
 }

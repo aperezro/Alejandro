@@ -82,8 +82,8 @@ export const PROJECTS = [
     title: "Dusklight",
     image: dusklight,
     footageUrl: "https://lnkd.in/p/g9F5nX3z",
-    description: "Contributed to an open-source project bringing a GameCube-era title to modern platforms, including native deployment on iPhone and iPad. Implemented touchscreen controls and mobile UI overlays, improved iOS/iPadOS deployment and ARM64 builds, added support for high-resolution 4K textures on mobile, and debugged platform-specific crashes and rendering issues. Investigated texture handling, memory behavior, build artifacts, signing, and Apple-specific graphics quirks before validating performance and stability across mobile hardware at high refresh rates.",
-    technologies: ["C++", "C", "Xcode"],
+    description: "Developed GameCube-style multitouch controls for Dusklight's existing iOS build, then adapted the implementation into a shared module following maintainer feedback. Integrated controller selection, persisted stick sensitivity, PAD input conversion, and an iOS gyro aiming extension. Documented device testing, texture-pack experiments, and startup debugging, including the limits of the available validation.",
+    technologies: ["C++", "SDL3", "ImGui", "CMake", "iOS"],
   },
    {
     slug: "cycourse",

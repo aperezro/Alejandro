@@ -6,11 +6,14 @@ import reignitionLogo from '../assets/projects/reignition-logo.png';
 import Aurora from './Aurora';
 import pupilReproduction from '../assets/projects/reignition-story/pupil-offset-reproduction.png';
 import spinReproduction from '../assets/projects/reignition-story/spin-effect-reproduction.png';
+import spinGlitchGameplay from '../assets/projects/reignition-story/spin-glitch-gameplay.jpg';
+import ipadHandsOn from '../assets/projects/reignition-story/ipad-hands-on.jpg';
 import touchGameplay from '../assets/projects/reignition-story/touch-gameplay.jpeg';
 import grinding from '../assets/projects/reignition-story/grinding.jpeg';
 import moonlitStage from '../assets/projects/reignition-story/moonlit-stage.jpeg';
 import actionScene from '../assets/projects/reignition-story/action.jpeg';
 import './ReignitionProject.css';
+import ProjectHeroDetails from './ProjectHeroDetails';
 
 const GAME_REPOSITORY = 'https://github.com/aperezro/project-reignition';
 const IOS_NOTES = `${GAME_REPOSITORY}/blob/c61e5d6bfa24dbdaa5d53c9fb4b695cefc597560/IOS.md`;
@@ -36,9 +39,14 @@ const DEBUGGING_ISSUES = [
     mattered: 'The effect made normal movement look like a permanent jump. I needed to check the rendered effect as well as the player’s animation state.',
     investigated: 'The old effect faded through a mesh-transparency property unsupported by the Mobile renderer. I replaced that path with a shader alpha parameter and explicit show/hide control. Fade cancellation also needed to prevent an old tween from hiding a newly started effect or making a cancelled effect return.',
     verified: 'Rendered tests checked the effect before jumping, during an equipped Spin Jump, after landing, and when fades were interrupted or cancelled. The 49-check gameplay suite also passed on the physical M1 iPad.',
-    image: spinReproduction,
-    alt: 'Reconstruction of Sonic standing with the blue spinning-ball effect still visible around him.',
-    caption: 'Reconstructed visual state: the real spin effect is forced visible around the standing model. A still image illustrates the symptom; it does not demonstrate continuous animation.'
+    image: spinGlitchGameplay,
+    alt: 'In-game capture of Sonic on the ground with the blue spin effect still visible, surrounded by the mobile touch controls.',
+    caption: 'Original in-game bug capture: the spin effect remains visible around Sonic on the ground.',
+    recreation: {
+      src: spinReproduction,
+      alt: 'Labeled recreation of the jump-ball glitch using the actual Sonic model, with the spin effect visible while standing.',
+      caption: 'Controlled recreation: the actual game model and spin effect rendered on a Mac, with the effect forced visible outside a jump. This illustrates the visual state separately from the original gameplay capture.'
+    }
   },
   {
     title: 'Installed successfully. Opened to gray.',
@@ -120,6 +128,7 @@ function DebuggingCard({ issue, index }) {
         <span className="reignition-debug-toggle" aria-hidden="true" />
       </summary>
       {issue.image && <StoryImage src={issue.image} alt={issue.alt} caption={issue.caption} className="reignition-bug-image" />}
+      {issue.recreation && <StoryImage src={issue.recreation.src} alt={issue.recreation.alt} caption={issue.recreation.caption} className="reignition-bug-image" />}
       <dl>
         <div><dt>What I saw</dt><dd>{issue.seen}</dd></div>
         <div><dt>Why it mattered</dt><dd>{issue.mattered}</dd></div>
@@ -132,13 +141,6 @@ function DebuggingCard({ issue, index }) {
 }
 
 export default function ReignitionProject({ project }) {
-  const reducedMotion = useReducedMotion();
-  const exploreStory = event => {
-    event.preventDefault();
-    const heading = document.getElementById('reignition-story-title');
-    heading?.focus({ preventScroll: true });
-    document.getElementById('reignition-story')?.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'start' });
-  };
   return (
     <article className="reignition-project">
       <section className="reignition-hero" aria-labelledby="reignition-title">
@@ -148,31 +150,25 @@ export default function ReignitionProject({ project }) {
         <div className="reignition-hero-copy">
           <p className="reignition-eyebrow">Project / iPhone &amp; iPad port</p>
           <h1 id="reignition-title">A classic adventure, <span>reborn for mobile.</span></h1>
-          <p className="reignition-summary">I brought Project Reignition, a Godot 4.7 .NET game, to iPhone and iPad. The port adds touch controls and mobile-first layouts, with gameplay and interface fixes validated on real Apple devices.</p>
+          <p className="reignition-summary">I brought Project Reignition, a Godot .NET game, to iPhone and iPad with multitouch controls and layouts adapted for both displays.<span className="project-hero-description-detail"> The port also addresses rendering glitches, mission loading, and menu flows, with gameplay and interface fixes tested on real Apple devices.</span></p>
           <ul className="reignition-technologies" aria-label="Project technologies">
             {project.technologies.map(technology => <li key={technology}>{technology}</li>)}
           </ul>
-          <div className="reignition-actions">
+          <div className="reignition-actions project-hero-actions">
             <a href={REIGNITION_RELEASE} target="_blank" rel="noopener noreferrer" className="reignition-button">Download Now <IoGameController aria-hidden="true" /></a>
-            {project.footageUrl && <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="reignition-button">Watch Gameplay <FaExternalLinkAlt aria-hidden="true" /></a>}
-            <a href="#reignition-story" onClick={exploreStory} className="reignition-story-link">Explore the development story</a>
+            <a href={GAME_REPOSITORY} target="_blank" rel="noopener noreferrer" className="reignition-button project-secondary-action">Visit Project <FaExternalLinkAlt aria-hidden="true" /></a>
           </div>
+          <ProjectHeroDetails storyId="reignition-story" note="iOS preview · v1.0.6" />
         </div>
       </section>
 
       <section id="reignition-story" className="reignition-story" aria-labelledby="reignition-story-title">
         <div className="reignition-story-line" aria-hidden="true" />
         <header className="reignition-story-heading">
-          <p className="reignition-eyebrow">Development story / From desktop to device</p>
-          <h2 id="reignition-story-title" tabIndex={-1}>From desktop to iPhone &amp; iPad</h2>
+          <h2 id="reignition-story-title" tabIndex={-1}>Development Story</h2>
           <p className="reignition-story-intro">The goal sounded straightforward: take Project Reignition and make it playable on my phone. Getting there meant adapting controls, rebuilding layouts, working through Apple’s signing process, and repeatedly testing what happened once the game left the desktop.</p>
         </header>
 
-        <div className="reignition-story-overview" aria-label="Project scope">
-          <div><span>My role</span><strong>iOS port &amp; mobile adaptation</strong></div>
-          <div><span>Runtime</span><strong>Godot 4.7 .NET · Metal Mobile</strong></div>
-          <div><span>Delivered</span><strong>v1.0.6 · build 2 · signed IPA</strong></div>
-        </div>
         <div className="reignition-timeline">
           <StoryChapter number="01" title="Understand the game before changing the platform">
             <p>Project Reignition is an existing fan remake of Sonic and the Secret Rings. The original developers built the game, its levels, and its assets. My project was to bring that desktop Godot .NET/C# game to iPhone and iPad while preserving the adventure they had created.</p>
@@ -202,7 +198,7 @@ export default function ReignitionProject({ project }) {
 
           <StoryChapter number="05" title="Follow the bugs past the first attempted fix" className="reignition-debugging-chapter">
             <p className="reignition-chapter-lead">A desktop run, a clean build, and an installed app each answered a different question. These are the failures that pushed the port from “it exports” toward playable device builds.</p>
-            <p>The two model images below are clearly labeled reproductions made later with the actual game assets. They explain the visual symptoms; they are not original screenshots of the September iPhone failures.</p>
+            <p>The eye-alignment image is a labeled model reproduction. For the spinning-ball glitch, an original gameplay capture shows the problem in context, followed by a controlled recreation that makes the unwanted effect easier to inspect.</p>
             <div className="reignition-debug-list">
               {DEBUGGING_ISSUES.map((issue, index) => <DebuggingCard key={issue.title} issue={issue} index={index} />)}
             </div>
@@ -230,6 +226,7 @@ export default function ReignitionProject({ project }) {
           <StoryChapter number="08" title="From a working device build to a shareable release" className="reignition-outcome">
             <p>The result was a native iPhone/iPad port with touch controls, adapted layouts, and recorded device gameplay. Normal Rampage gameplay on the phone reached 4 of 20 enemies defeated; the iPad records confirmed installation and normal launch, alongside its earlier gameplay regression run.</p>
             <p>I then published the archived build on my fork with detailed installation instructions. The 2.65 GB IPA exceeded GitHub’s per-file limit, so the release contains two parts, a reassembly helper, and checksums. The original development profile has expired: testers must re-sign with their own active certificate and device profile.</p>
+            <StoryImage src={ipadHandsOn} alt="Hands holding an iPad in landscape while playing Project Reignition with the on-screen movement stick and action buttons." caption="From the build pipeline to hands-on play: Project Reignition running on an iPad with the touch controls in use." />
             <div className="reignition-scene-gallery">
               <StoryImage src={moonlitStage} alt="Sonic in a moonlit palace scene from Project Reignition." caption="Supplied game image: the adventure the port aims to preserve. Capture device and build unspecified." />
               <StoryImage src={actionScene} alt="Sonic mid-action in a palace with enemies in the background." caption="Supplied game image: original character, environment, and action work credited to the game’s developers. Capture device and build unspecified." />
@@ -252,7 +249,6 @@ export default function ReignitionProject({ project }) {
             <nav className="reignition-final-links" aria-label="Project links">
               <a href={REIGNITION_RELEASE} target="_blank" rel="noopener noreferrer" className="reignition-button">Get the iOS Release <IoGameController aria-hidden="true" /></a>
               {project.footageUrl && <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="reignition-source-link">Watch Gameplay <FaExternalLinkAlt aria-hidden="true" /></a>}
-              <a href={GAME_REPOSITORY} target="_blank" rel="noopener noreferrer" className="reignition-source-link">View Game Source <FaExternalLinkAlt aria-hidden="true" /></a>
             </nav>
           </StoryChapter>
         </div>
