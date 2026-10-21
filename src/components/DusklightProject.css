@@ -1,0 +1,91 @@
+.dusklight-sky {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(8px) brightness(.38) saturate(.8);
+  transform: scale(1.04);
+}
+.dusklight-page { position: relative; isolation: isolate; }
+.dusklight-page > nav, .dusklight-page > a { position: relative; z-index: 1; }
+.dusklight-project { color: #eaf3e8; }
+.dusklight-hero {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .95fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 88px);
+  min-height: clamp(500px, 66vh, 720px);
+  padding: 36px clamp(20px, 4vw, 56px) 64px;
+  overflow: hidden;
+}
+.dusklight-logo-column, .dusklight-hero-copy { position: relative; z-index: 1; min-width: 0; }
+.dusklight-logo-column { animation: dusklight-enter-left .8s ease-out both; }
+.dusklight-hero-copy { animation: dusklight-enter-right .8s ease-out both; }
+.dusklight-logo { display: block; width: 100%; max-width: 600px; height: auto; margin: 0 auto; filter: drop-shadow(0 16px 38px #000d); }
+.dusklight-hero-copy {
+  padding: clamp(24px, 3.5vw, 44px);
+  border: 1px solid #c5e4a842;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #08120eeF, #080d0bea);
+  box-shadow: 0 24px 70px #0009;
+  backdrop-filter: blur(10px);
+}
+.dusklight-eyebrow { margin-bottom: 16px; color: #c5e4a8; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+.dusklight-hero-copy h1 { color: #fff; font-family: 'Cinzel', serif; font-size: clamp(28px, 3.3vw, 44px); font-variant: small-caps; font-weight: 700; line-height: 1.2; letter-spacing: .025em; }
+.dusklight-summary { margin-top: 22px; color: #dbe8d8; font-size: 15px; line-height: 1.85; }
+.dusklight-technologies { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 26px; padding: 0; list-style: none; }
+.dusklight-technologies li { padding: 6px 11px; border: 1px solid #c5e4a855; border-radius: 999px; background: #b2d87812; color: #d6efbd; font-size: 12px; }
+.dusklight-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.dusklight-button { display: inline-flex; align-items: center; gap: 10px; border: 1px solid transparent; border-radius: 999px; padding: 14px 18px; background: #eff8e8; color: #122014; font-size: 14px; font-weight: 700; transition: box-shadow 180ms ease, transform 180ms ease, background-color 180ms ease; }
+.dusklight-button:hover { transform: translateY(-2px); box-shadow: 0 0 28px #b5e27b88; }
+.dusklight-button-secondary { border-color: #c5e4a866; background: #09140fcc; color: #e9f4e2; }
+.dusklight-button-secondary:hover { background: #182719; }
+.dusklight-story-link { display: inline-block; margin-top: 18px; color: #d6efbd; font-size: 13px; text-underline-offset: 4px; }
+.dusklight-story-link:hover { color: #fff; text-decoration: underline; }
+.dusklight-story { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 28px 0 100px; }
+.dusklight-story-line { height: 1px; margin-bottom: 44px; background: linear-gradient(90deg, transparent, #b6dc91a6, transparent); }
+.dusklight-story-heading { max-width: 800px; margin: 0 auto 42px; text-align: center; }
+.dusklight-story-heading h2 { color: #fff; font-size: clamp(32px, 4vw, 48px); font-weight: 800; letter-spacing: -.04em; }
+.dusklight-story-heading > p:last-child { margin-top: 20px; color: #e0eadc; font-size: clamp(16px, 2vw, 18px); line-height: 1.85; }
+.dusklight-timeline { position: relative; }
+.dusklight-timeline::before { position: absolute; top: 12px; bottom: 12px; left: 24px; width: 1px; background: linear-gradient(#c5e4a855, #91c97b55 80%, transparent); content: ""; }
+.dusklight-chapter { position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 24px; padding: 32px 0; border-top: 1px solid #c5e4a833; opacity: 0; transform: translateY(28px); transition: opacity 550ms ease-out, transform 550ms ease-out; }
+.dusklight-chapter.is-visible { opacity: 1; transform: translateY(0); }
+.dusklight-chapter-number { position: relative; z-index: 1; display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid #c5e4a866; border-radius: 50%; background: #0a120c; color: #d0e9ac; font-size: 12px; font-weight: 750; letter-spacing: .06em; }
+.dusklight-chapter-body { min-width: 0; padding: clamp(20px, 3vw, 32px); border: 1px solid #c5e4a833; border-radius: 18px; background: #07100deF; box-shadow: 0 18px 50px #0007; }
+.dusklight-chapter-body h3 { margin-bottom: 16px; color: #f5faef; font-size: clamp(22px, 2.4vw, 30px); font-weight: 700; line-height: 1.25; }
+.dusklight-chapter-body p { margin: 0 0 14px; color: #d4e1d0; font-size: 15px; line-height: 1.85; }
+.dusklight-chapter-body p:last-child { margin-bottom: 0; }
+.dusklight-project-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.dusklight-project-links a { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #c5e4a855; border-radius: 999px; padding: 11px 15px; color: #e2f3d3; font-size: 13px; font-weight: 650; }
+.dusklight-project-links a:hover { background: #d4edbd18; }
+@media (max-width: 899px) {
+  .dusklight-hero { grid-template-columns: 1fr; gap: 24px; min-height: 0; padding: 20px 0 48px; }
+  .dusklight-logo-column { width: min(100%, 560px); margin: 0 auto; }
+  .dusklight-hero-copy { width: min(100%, 650px); margin: 0 auto; }
+  .dusklight-story { padding-top: 20px; }
+}
+@media (max-width: 600px) {
+  .dusklight-hero { padding-top: 12px; }
+  .dusklight-logo { max-width: 500px; }
+  .dusklight-hero-copy { padding: 22px; }
+  .dusklight-timeline::before { left: 16px; }
+  .dusklight-chapter { grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 24px 0; }
+  .dusklight-chapter-number { width: 34px; height: 34px; font-size: 10px; }
+  .dusklight-story-heading { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dusklight-logo-column, .dusklight-hero-copy { animation: none; }
+  .dusklight-chapter { opacity: 1; transform: none; transition: none; }
+  .dusklight-button { transition: none; }
+}
+@keyframes dusklight-enter-left {
+  from { opacity: 0; transform: translateX(-48px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes dusklight-enter-right {
+  from { opacity: 0; transform: translateX(48px); }
+  to { opacity: 1; transform: translateX(0); }
+}

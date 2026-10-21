@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { PROJECT_PAGES } from '../constants';
 import FeaturedProject from './FeaturedProject';
 import ReignitionProject from './ReignitionProject';
+import DusklightProject from './DusklightProject';
 
 export default function ProjectPage({ slug }) {
   const project = PROJECT_PAGES.find(project => project.slug === slug);
@@ -11,9 +12,9 @@ export default function ProjectPage({ slug }) {
     return () => { document.title = 'Alejandro Perez Robles'; };
   }, [project]);
   return (
-    <div className={`mx-auto py-8 sm:py-12 ${['unleashed-recompiled', 'project-reignition'].includes(slug) ? 'max-w-7xl' : 'max-w-6xl'} ${slug === 'project-reignition' ? 'reignition-page' : ''}`}>
+    <div className={`mx-auto py-8 sm:py-12 ${['unleashed-recompiled', 'project-reignition', 'dusklight'].includes(slug) ? 'max-w-7xl' : 'max-w-6xl'} ${slug === 'project-reignition' ? 'reignition-page' : ''} ${slug === 'dusklight' ? 'dusklight-page' : ''}`}>
       <a href="#projects" className="project-back-link mb-8 inline-flex items-center gap-2 rounded-full border border-stone-600 bg-black/60 px-5 py-3 text-sm hover:bg-stone-800">← All Projects</a>
-      {!project ? <div className="py-20"><h1 className="text-4xl text-white">Project not found</h1><p className="mt-4">Choose a project from the navigation or return to the project list.</p></div> : project.slug === 'unleashed-recompiled' ? <FeaturedProject /> : project.slug === 'project-reignition' ? <ReignitionProject project={project} /> : (
+      {!project ? <div className="py-20"><h1 className="text-4xl text-white">Project not found</h1><p className="mt-4">Choose a project from the navigation or return to the project list.</p></div> : project.slug === 'unleashed-recompiled' ? <FeaturedProject /> : project.slug === 'project-reignition' ? <ReignitionProject project={project} /> : project.slug === 'dusklight' ? <DusklightProject project={project} /> : (
         <article className="min-w-0">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">Project / {project.title}</p>
           <h1 className="animated-stone-gradient-text max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl">{project.title}</h1>

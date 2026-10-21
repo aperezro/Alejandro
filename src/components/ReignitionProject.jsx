@@ -123,9 +123,9 @@ export default function ReignitionProject({ project }) {
       </section>
 
       <section id="reignition-story" className="reignition-story" aria-labelledby="reignition-story-title">
+        <div className="reignition-story-line" aria-hidden="true" />
         <header className="reignition-story-heading">
-          <p className="reignition-eyebrow">Project Reignition · iOS port</p>
-          <h2 id="reignition-story-title">From desktop to iPhone and iPad</h2>
+          <h2 id="reignition-story-title">Development Story</h2>
           <p className="reignition-story-intro">The goal sounded straightforward: take Project Reignition and make it playable on my phone. Getting there meant adapting controls, rebuilding layouts, working through Apple’s signing process, and repeatedly testing what happened once the game left the desktop.</p>
         </header>
 

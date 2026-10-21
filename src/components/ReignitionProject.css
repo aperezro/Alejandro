@@ -31,7 +31,7 @@
   backdrop-filter: blur(8px);
 }
 .reignition-eyebrow { margin-bottom: 16px; color: #ffd27c; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
-.reignition-hero-copy h1 { color: #fff; font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -.045em; }
+.reignition-hero-copy h1 { color: #fff; font-family: 'GrecoTenSSi', serif; font-size: clamp(32px, 4vw, 52px); font-style: italic; font-weight: 400; line-height: 1.1; letter-spacing: 0; text-transform: uppercase; }
 .reignition-hero-copy h1 span { color: #ffc45e; }
 .reignition-summary { margin-top: 22px; color: #f3dfcc; font-size: 15px; line-height: 1.85; }
 .reignition-technologies { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 26px; padding: 0; list-style: none; }
@@ -53,8 +53,9 @@
   transform: translateX(-50%) scaleY(-1);
 }
 .reignition-story { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 28px 0 100px; }
+.reignition-story-line { height: 1px; margin-bottom: 44px; background: linear-gradient(90deg, transparent, #ff9b3c99, transparent); }
 .reignition-story-heading { max-width: 800px; margin: 0 auto 42px; text-align: center; }
-.reignition-story-heading h2 { color: #fff; font-size: clamp(32px, 4vw, 48px); font-weight: 800; letter-spacing: -.04em; }
+.reignition-story-heading h2 { color: #fff; font-family: 'GrecoTenSSi', serif; font-size: clamp(32px, 4vw, 48px); font-style: italic; font-weight: 400; letter-spacing: 0; text-transform: uppercase; }
 .reignition-story-intro { margin-top: 20px; color: #f3dfcc; font-size: clamp(16px, 2vw, 18px); line-height: 1.85; }
 .reignition-timeline { position: relative; }
 .reignition-timeline::before { position: absolute; top: 12px; bottom: 12px; left: 24px; width: 1px; background: linear-gradient(#ffc76c55, #ff6e3b55 80%, transparent); content: ""; }
