@@ -255,3 +255,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid #b19eef; outline-offs
 .mobile-menu-link { display: block; border-radius: 12px; padding: 12px; font-size: 18px; }
 .mobile-menu-link:hover, .mobile-menu-link:focus-visible { background: white; color: black; }
 
+
+.site-header {
+  transform: translate3d(0, 0, 0);
+  transition: transform 220ms ease;
+  will-change: transform;
+}
+.site-header[data-hidden="true"] {
+  transform: translate3d(0, -100%, 0);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header { transition: none; }
+}

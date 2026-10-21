@@ -7,6 +7,7 @@ import { PROJECT_PAGES, projectPageTitle } from '../constants';
 
 const Navbar = ({ route }) => {
   const [highlight, setHighlight] = useState(null);
+  const [headerHidden, setHeaderHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const dialogRef = useRef(null);
@@ -15,6 +16,27 @@ const Navbar = ({ route }) => {
   const dropdownRef = useRef(null);
   const toggleRef = useRef(null);
   const reducedMotion = useReducedMotion();
+  useEffect(() => {
+    setHeaderHidden(false);
+    if (open || mobileOpen) return;
+    const scrollPosition = () => Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight));
+    let previousY = scrollPosition();
+    const onScroll = () => {
+      const currentY = scrollPosition();
+      if (currentY <= 100) {
+        setHeaderHidden(false);
+        previousY = currentY;
+        return;
+      }
+      // Ignore tiny movements and clamp iOS rubber-band overscroll.
+      if (Math.abs(currentY - previousY) < 6) return;
+      setHeaderHidden(currentY > previousY);
+      previousY = currentY;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [open, mobileOpen]);
+
   useEffect(() => {
     const close = event => {
       if (!dropdownRef.current?.contains(event.target)) setOpen(false);
@@ -97,7 +119,7 @@ const Navbar = ({ route }) => {
   const closeDropdown = () => { setOpen(false); setMobileOpen(false); };
 
   return (
-    <div className="site-header fixed inset-x-0 top-0 z-40">
+    <div className="site-header fixed inset-x-0 top-0 z-40" data-hidden={headerHidden} onFocusCapture={() => setHeaderHidden(false)}>
     <header className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-8">
       <a href="#home" aria-label="Alejandro Pérez home" onClick={closeDropdown} className="flex items-center gap-2 font-semibold text-white">
         <img src={logo} width={70} height={35} alt="" /><span className="hidden xl:inline">Alejandro Pérez</span>
