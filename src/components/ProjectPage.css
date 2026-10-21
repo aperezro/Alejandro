@@ -55,3 +55,10 @@
 }
 
 @media (max-width: 600px) { .project-hero-description-detail { display: none; } }
+
+@media (max-width: 899px) {
+  .project-page :is(.unleashed-project-logo, .reignition-logo) { max-height: 138.6px; }
+}
+@media (max-width: 600px) {
+  .project-page :is(.unleashed-project-logo, .reignition-logo) { max-height: 73.92px; }
+}
