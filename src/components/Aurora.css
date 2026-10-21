@@ -17,3 +17,25 @@
   object-fit: cover;
 }
 
+
+/* Used only when WebGL cannot start or its context is lost. */
+.aurora-container.aurora-fallback::before {
+  content: "";
+  position: absolute;
+  inset: -8% -6% 10%;
+  background:
+    radial-gradient(ellipse at 5% 0%, rgba(124, 255, 103, 0.65), transparent 58%),
+    radial-gradient(ellipse at 50% 0%, rgba(177, 158, 239, 0.42), transparent 55%),
+    radial-gradient(ellipse at 95% 0%, rgba(82, 39, 255, 0.75), transparent 60%);
+  -webkit-mask-image: linear-gradient(black 25%, transparent 95%);
+  mask-image: linear-gradient(black 25%, transparent 95%);
+  animation: aurora-fallback-drift 12s ease-in-out infinite alternate;
+  transform-origin: top center;
+}
+@keyframes aurora-fallback-drift {
+  from { transform: translate(-2%, -2%) scale(1.02); opacity: 0.8; }
+  to { transform: translate(2%, 4%) scale(1.1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora-container.aurora-fallback::before { animation: none; }
+}

@@ -1,16 +1,18 @@
-import React from 'react'
+import usePageRoute from './hooks/usePageRoute'
+import ProjectPage from './components/ProjectPage'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Technologies from './components/Technologies'
 import Projects from './components/Projects'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
-import Clubs from './components/Clubs'
+import { ABOUT_TEXT } from "./constants"
 import Aurora from './components/Aurora'
 
 const App = () => {
+  const route = usePageRoute();
   return (
-    <div className="overflow-x-hidden text-stone-300 antialiased relative">
+    <div className="overflow-x-clip text-stone-300 antialiased relative">
       <div className="fixed inset-0 -z-10">
         <div className="relative h-full w-full bg-black">
           <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
@@ -27,14 +29,22 @@ const App = () => {
             speed={1}
           />
         </div>
-        <div className="container mx-auto px-4 sm:px-8 max-w-full overflow-hidden relative z-10">
-        <Navbar />
+        <Navbar route={route} />
+        <div className="container mx-auto px-4 sm:px-8 max-w-full relative z-10 pt-[84px] lg:pt-[94px]">
+        <main>
+        {route.page === "project" ? <ProjectPage slug={route.slug} /> : <>
         <Hero />
-        <Technologies />
-        <Experience />
         <Projects />
+        <section id="experience"><Experience /></section>
+        <section id="about" className="mx-auto max-w-6xl pt-12">
+          <h2 className="animated-stone-gradient-text mb-6 text-center text-4xl">About</h2>
+          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-stone-300">{ABOUT_TEXT}</p>
+          <Technologies />
+        </section>
     
-        <Contact />
+        <section id="contact"><Contact /></section>
+        </>}
+        </main>
         
         </div>
       </div>

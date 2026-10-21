@@ -35,6 +35,10 @@ const Contact = () => {
           >
               {CONTACT.email}
           </a>
+        <div className="mt-6 flex justify-center gap-6">
+          <a href="https://www.linkedin.com/in/aperezro/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">LinkedIn</a>
+          <a href="https://github.com/aperezro/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">GitHub</a>
+        </div>
       </div>
     </motion.div>
   )

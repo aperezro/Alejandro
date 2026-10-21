@@ -1,11 +1,10 @@
-import { PROJECTS } from '../constants'
-import { FaYoutube } from "react-icons/fa"
+import { PROJECTS, PROJECT_PAGES } from '../constants'
 import { BiHandicap } from "react-icons/bi"
 import { motion } from "framer-motion"
 
 const Projects = () => {
   return (
-    <div className="pb-4">
+    <section id="projects" className="pb-4">
       <motion.div 
         className="my-20 flex justify-center"
         whileInView={{ opacity: 1, y: 0 }}
@@ -58,64 +57,17 @@ const Projects = () => {
                   </span>
                 ))}
 
-                {project.footageUrl ? (
-                  <motion.a
-                    href={project.footageUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-2 inline-block rounded-lg bg-yellow-500 px-4 py-2 text-sm font-medium text-black"
-                    whileHover={{ scale: 1.1, boxShadow: "0px 0px 8px rgba(234,179,8,0.8)" }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    View Footage
-                  </motion.a>
-                ) : project.title === "Unleashed Recompiled" && (
-                  <button
-                    type="button"
-                    disabled
-                    className="ml-2 inline-block cursor-not-allowed rounded-lg bg-stone-700 px-4 py-2 text-sm font-medium text-stone-300"
-                  >
-                    Footage Coming Soon
-                  </button>
+                {PROJECT_PAGES.some(page => page.slug === project.slug) && <motion.a
+                  href={`#/projects/${project.slug}`}
+                  aria-label={`View project: ${project.title}`}
+                  className="inline-block rounded-full bg-white px-5 py-2 text-sm font-semibold text-black hover:bg-stone-200"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >View Project <span aria-hidden="true">↗</span></motion.a>}
+                {project.footageUrl && !['project-reignition', 'dusklight'].includes(project.slug) && (
+                  <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-stone-600 px-4 py-2 text-sm hover:bg-stone-800">View Footage</a>
                 )}
 
-                {project.title === "Project Reignition" && (
-                  <button
-                    type="button"
-                    disabled
-                    className="ml-2 inline-block cursor-not-allowed rounded-lg bg-stone-700 px-4 py-2 text-sm font-medium text-stone-300"
-                  >
-                    Download Game Coming Soon
-                  </button>
-                )}
-
-                
-                {project.title === "Manny's Quest Game" && (
-                  <motion.button
-                    onClick={() => window.open('https://youtu.be/Tbj9qGEH-MU', '_blank')}
-                    className="ml-2 flex items-center gap-2 rounded bg-stone-900 px-3 py-2 text-red-500 font-semibold transition-all duration-300 hover:bg-red-500 hover:text-white hover:shadow-lg hover:shadow-red-500/50 cursor-pointer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <FaYoutube size={18} />
-                    View Project
-                  </motion.button>
-                )}
-
-           
-                {project.title === "Autonomous Roomba" && (
-                  <motion.button
-                    onClick={() => window.open('https://youtu.be/Sz_m1Ht0rnQ', '_blank')}
-                    className="ml-2 flex items-center gap-2 rounded bg-stone-900 px-3 py-2 text-red-500 font-semibold transition-all duration-300 hover:bg-red-500 hover:text-white hover:shadow-lg hover:shadow-red-500/50 cursor-pointer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <FaYoutube size={18} />
-                    View Project
-                  </motion.button>
-                )}
-
-            
                 {project.title === "C Programs using a Playstation 4 Controller" && (
                   <div className="ml-2 rounded bg-stone-900 p-2 text-blue-400">
                     <BiHandicap size={16} />
@@ -126,7 +78,7 @@ const Projects = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   )
 }
 

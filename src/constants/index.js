@@ -14,9 +14,9 @@ import job2 from "../assets/jobs/sazon.png";
 import job3 from "../assets/jobs/desi_logo.png";
 import job4 from "../assets/jobs/deptresidence.png";
 
-export const HERO_CONTENT = `I am a passionate full stack developer with a knack for crafting robust and scalable web applications. With 5 years of hands-on experience, I have honed my skills in front-end technologies like React and Next.js, as well as back-end technologies like Node.js, MySQL, and MongoDB. My goal is to leverage my expertise to create innovative solutions that drive business growth and deliver exceptional user experiences.`;
+export const HERO_CONTENT = `I build customer-facing software at John Deere and co-founded Sazón Marketing. My work spans full-stack web applications and native iOS game ports, including bringing Sonic Unleashed to iPhone and iPad with Metal rendering and touch controls.`;
 
-export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With 5 years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, Hydrogen, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and expressing my creativity through visual design.`;
+export const ABOUT_TEXT = `I’m a software engineer with experience in enterprise applications, e-commerce, and native game development. At John Deere, I work on Channel UX applications; at Sazón Marketing, I build websites and integrations for businesses. Outside of web development, I enjoy solving platform and graphics challenges to bring desktop games to iPhone and iPad.`;
 
 export const EXPERIENCES = [
 
@@ -61,6 +61,7 @@ Developed a calorie tracker and calculator, and prototyped online checkout and f
 
 export const PROJECTS = [
   {
+    slug: "project-reignition",
     title: "Project Reignition",
     image: reignition,
     footageUrl: "https://lnkd.in/p/gy4gcpfi",
@@ -69,6 +70,7 @@ export const PROJECTS = [
     technologies: ["Godot", ".NET", "C#", "Xcode"],
   },
   {
+    slug: "unleashed-recompiled",
     title: "Unleashed Recompiled",
     image: unleashed,
     footageUrl: "",
@@ -76,6 +78,7 @@ export const PROJECTS = [
     technologies: ["Xcode", "C++", "Metal", "Vulkan"],
   },
   {
+    slug: "dusklight",
     title: "Dusklight",
     image: dusklight,
     footageUrl: "https://lnkd.in/p/g9F5nX3z",
@@ -83,6 +86,7 @@ export const PROJECTS = [
     technologies: ["C++", "C", "Xcode"],
   },
    {
+    slug: "cycourse",
     title: "CyCourse App",
     image: project5,
     description:
@@ -90,6 +94,7 @@ export const PROJECTS = [
     technologies: ["Java", "JavaScript", "Teamwork", "Postman", "Android Studio"],
   },
   {
+    slug: "lift-mate",
     title: "Lift Mate App",
     image: project2,
     description:
@@ -97,13 +102,16 @@ export const PROJECTS = [
     technologies: ["Java", "JavaScript", "Teamwork", "Firebase", "Android Studio"],
   },
   {
+    slug: "autonomous-roomba",
     title: "Autonomous Roomba",
+    footageUrl: "https://youtu.be/Sz_m1Ht0rnQ",
     image: project3,
     description:
       "Wrote low-level C to drive motors and read sensors, implementing scanning, mapping, and obstacle avoidance. Demonstrated full autonomous navigation where the robot successfully mapped the area and reached a set goal. Developed a Python GUI for manual control and live mapping, fully integrated with the embedded system code.",
     technologies: ["C", "Git", "Embedded Systems", "Python", "GUI", "Automation"],
   },
   {
+    slug: "ps4-accessibility",
     title: "C Programs using a Playstation 4 Controller",
     image: project4,
     description:
@@ -111,7 +119,9 @@ export const PROJECTS = [
     technologies: ["C", "Accessibility Programming"],
   },
   {
+    slug: "mannys-quest",
     title: "Manny's Quest Game",
+    footageUrl: "https://youtu.be/Tbj9qGEH-MU",
     image: project1,
     description:
       "Self-taught Python and built a 2D platformer as my first coding project using Pygame. Designed and coded sprite animations, multiple levels, enemy AI, and a functional GUI. Published the game on YouTube, where classmates engaged with it by speedrunning and sharing feedback.",
@@ -149,3 +159,9 @@ export const CONTACT = {
   phoneNo: "+1 787 234 8861 ",
   email: "ap204898@gmail.com",
 };
+
+// Project pages currently ready to share. Other projects remain in the homepage list.
+export const PROJECT_PAGES = PROJECTS.filter(project =>
+  ['dusklight', 'project-reignition', 'unleashed-recompiled'].includes(project.slug)
+);
+export const projectPageTitle = project => project.slug === 'unleashed-recompiled' ? 'Sonic Unleashed' : project.title;

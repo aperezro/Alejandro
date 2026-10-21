@@ -120,11 +120,20 @@ export default function Aurora(props) {
     const ctn = ctnDom.current;
     if (!ctn) return;
 
-    const renderer = new Renderer({
-      alpha: true,
-      premultipliedAlpha: true,
-      antialias: true
-    });
+    // Preserve the original renderer when available; an optional background
+    // must never take down the portfolio when the browser refuses WebGL.
+    ctn.classList.remove('aurora-fallback');
+    let renderer;
+    try {
+      renderer = new Renderer({
+        alpha: true,
+        premultipliedAlpha: true,
+        antialias: true
+      });
+    } catch {
+      ctn.classList.add('aurora-fallback');
+      return;
+    }
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
@@ -170,7 +179,18 @@ export default function Aurora(props) {
     ctn.appendChild(gl.canvas);
 
     let animateId = 0;
+    let contextLost = false;
+    const onContextLost = event => {
+      event.preventDefault();
+      contextLost = true;
+      cancelAnimationFrame(animateId);
+      gl.canvas.style.display = 'none';
+      ctn.classList.add('aurora-fallback');
+    };
+    gl.canvas.addEventListener('webglcontextlost', onContextLost);
+
     const update = t => {
+      if (contextLost) return;
       animateId = requestAnimationFrame(update);
       const { time = t * 0.01, speed = 1.0 } = propsRef.current;
       program.uniforms.uTime.value = time * speed * 0.1;
@@ -181,7 +201,11 @@ export default function Aurora(props) {
         const c = new Color(hex);
         return [c.r, c.g, c.b];
       });
-      renderer.render({ scene: mesh });
+      try {
+        renderer.render({ scene: mesh });
+      } catch {
+        onContextLost({ preventDefault() {} });
+      }
     };
     animateId = requestAnimationFrame(update);
 
@@ -190,6 +214,7 @@ export default function Aurora(props) {
     return () => {
       cancelAnimationFrame(animateId);
       window.removeEventListener('resize', resize);
+      gl.canvas.removeEventListener('webglcontextlost', onContextLost);
       if (ctn && gl.canvas.parentNode === ctn) {
         ctn.removeChild(gl.canvas);
       }
