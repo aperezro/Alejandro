@@ -4,50 +4,76 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 import { IoGameController } from 'react-icons/io5';
 import reignitionLogo from '../assets/projects/reignition-logo.png';
 import Aurora from './Aurora';
+import pupilReproduction from '../assets/projects/reignition-story/pupil-offset-reproduction.png';
+import spinReproduction from '../assets/projects/reignition-story/spin-effect-reproduction.png';
+import touchGameplay from '../assets/projects/reignition-story/touch-gameplay.jpeg';
+import grinding from '../assets/projects/reignition-story/grinding.jpeg';
+import moonlitStage from '../assets/projects/reignition-story/moonlit-stage.jpeg';
+import actionScene from '../assets/projects/reignition-story/action.jpeg';
 import './ReignitionProject.css';
 
-const PORTFOLIO_REPOSITORY = 'https://github.com/aperezro/Alejandro';
+const GAME_REPOSITORY = 'https://github.com/aperezro/project-reignition';
+const IOS_NOTES = `${GAME_REPOSITORY}/blob/c61e5d6bfa24dbdaa5d53c9fb4b695cefc597560/IOS.md`;
+const IOS_TESTS = `${GAME_REPOSITORY}/tree/c61e5d6bfa24dbdaa5d53c9fb4b695cefc597560/Project/tests/ios`;
 const REIGNITION_RELEASE = 'https://github.com/aperezro/project-reignition/releases/tag/ios-v1.0.6-build2';
 const GODOT_IOS_EXPORT_GUIDE = 'https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_ios.html';
 const XCODE_SIGNING_GUIDE = 'https://developer.apple.com/documentation/xcode/configuring-app-signing';
 
 const DEBUGGING_ISSUES = [
   {
-    title: 'Misplaced Sonic pupils and eye textures',
-    seen: 'Sonic’s pupils or eye textures appeared out of position in the iOS build.',
-    mattered: 'A visible character-art issue made the mobile build feel unfinished, even when the rest of the scene rendered.',
-    investigated: 'I compared the character in the device build and iterated on the rendering until the eye alignment matched the intended presentation. The exact underlying technical cause is not recorded in this portfolio.',
-    verified: 'The project summary records the eye-alignment issue as fixed. It does not identify a specific code-level cause.'
+    title: 'Sonic’s pupils lost their alignment',
+    seen: 'The character rendered, but his pupils sat in the wrong places. It was a small detail with a very visible result.',
+    mattered: 'Exporting the same scene did not guarantee that its shader settings survived the trip to a device build.',
+    investigated: 'The headless export path could omit per-instance shader parameters. I moved the pupil UV offsets into ordinary exported properties and applied them again at runtime through SonicEye.gd: +0.225 for the left eye and −0.225 for the right.',
+    verified: 'A targeted export check confirmed that both offsets and the runtime script remained in the exported Sonic scene.',
+    image: pupilReproduction,
+    alt: 'Reproduced missing pupil offsets on Sonic’s model, with the pupils spread farther apart than intended.',
+    caption: 'Bug reproduction: zeroed pupil UV offsets, rendered from the actual game model on a Mac. This is a reconstruction, not an original iPhone capture.'
   },
   {
-    title: 'The jump ball kept spinning',
-    seen: 'Sonic’s jump-ball/spinning animation could remain active continuously instead of appearing only during the jump.',
-    mattered: 'An animation that never returned to its normal state obscured the character and made ordinary movement look like a broken gameplay state.',
-    investigated: 'An earlier attempted fix did not fully solve it, so I continued iterating and retesting instead of treating the first change as complete. The implementation-level cause is not documented here.',
-    verified: 'The project summary records the spinning jump effect as fixed after further iteration; it does not specify the final code change.'
+    title: 'The spinning jump effect would not disappear',
+    seen: 'The blue jump-ball effect remained visible around Sonic outside a jump. An earlier attempted fix did not fully solve it.',
+    mattered: 'The effect made normal movement look like a permanent jump. I needed to check the rendered effect as well as the player’s animation state.',
+    investigated: 'The old effect faded through a mesh-transparency property unsupported by the Mobile renderer. I replaced that path with a shader alpha parameter and explicit show/hide control. Fade cancellation also needed to prevent an old tween from hiding a newly started effect or making a cancelled effect return.',
+    verified: 'Rendered tests checked the effect before jumping, during an equipped Spin Jump, after landing, and when fades were interrupted or cancelled. The 49-check gameplay suite also passed on the physical M1 iPad.',
+    image: spinReproduction,
+    alt: 'Reconstruction of Sonic standing with the blue spinning-ball effect still visible around him.',
+    caption: 'Reconstructed visual state: the real spin effect is forced visible around the standing model. A still image illustrates the symptom; it does not demonstrate continuous animation.'
   },
   {
-    title: 'A gray screen after launching an installed build',
-    seen: 'After installing a build, launching the app could leave the screen gray.',
-    mattered: 'Successful signing and installation did not prove the game had launched correctly; launch and gameplay needed separate checks.',
-    investigated: 'I treated the gray launch as a runtime symptom and checked the installed build on-device. The available project notes do not document a root cause or tie this symptom to a particular change.',
-    verified: 'Installed builds were checked for launch and gameplay on actual devices. No specific gray-screen fix is claimed here because its resolution is not documented.'
+    title: 'Installed successfully. Opened to gray.',
+    seen: 'One installed build opened to a gray screen instead of playable gameplay.',
+    mattered: 'Signing, installation, launch, and gameplay were four separate milestones. Passing one did not establish the next.',
+    investigated: 'I separated deployment checks from runtime checks and used launch logs, screenshots, and device gameplay tests to establish what actually ran. The surviving records do not isolate a specific root cause for this gray-screen report.',
+    verified: 'Later device records show normal launch and gameplay. I can substantiate that outcome without attributing this particular symptom to an unrecorded fix.'
   },
   {
-    title: 'Sand Oasis Rampage stalled while loading',
-    seen: 'The Sand Oasis “Rampage — defeat 20 enemies” mission could get stuck loading.',
-    mattered: 'A loading stall prevented the player from reaching the objective, so a successful app launch alone was not enough validation.',
-    investigated: 'I reproduced the mission-specific stall and worked through the native scene-loading path. The project notes do not document the underlying code-level cause.',
-    verified: 'The project summary records resolution of an iOS native scene-loading issue that could stall Rampage missions, and says recovery options were added.'
+    title: 'Sand Oasis Rampage loaded forever—or crashed',
+    seen: '“Rampage — defeat 20 enemies” could remain on the loading screen. A native baseline also crashed during scene instantiation.',
+    mattered: 'The tutorial could work while another mission failed. A smoke test at startup was not enough to establish that this stage could load.',
+    investigated: 'I compared scene bytes and dependencies across exports; the serialized scene was valid and instantiated on desktop. Investigation of the C# binding and native call path pointed to a lifetime gap: native code used a borrowed scene pointer while NativeAOT could collect its managed wrapper. GC.KeepAlive(scene), placed after ChangeSceneToPacked, retained the wrapper until instantiation finished. This diagnosis is supported by the native before/after results; the exact finalizer event was not instrumented.',
+    verified: 'The physical iPhone passed 20 cold-load checks, 20 checks with startup preloading, and 23 failure-recovery checks. Normal gameplay subsequently showed 4/20 enemies defeated. Failed loads now expose Retry and Main menu instead of an endless spinner.',
+    code: 'changeError = GetTree().ChangeSceneToPacked(scene);\nGC.KeepAlive(scene);'
   },
   {
-    title: 'The menu shifted and the rewards button disappeared',
-    seen: 'The main menu could sit off-center, and the level-rewards screen could lose its confirmation button.',
-    mattered: 'Misplaced menus and an unreachable confirmation action can block navigation and stop a level from being completed.',
-    investigated: 'I checked the full-screen layouts on iPhone and iPad and iterated on the affected menu and results screens. The portfolio notes do not establish a single technical cause.',
-    verified: 'The project summary records menu positioning and reward-screen button issues as fixed, with device-specific full-screen and safe-area adaptations.'
+    title: 'An off-center menu and a missing Confirm button',
+    seen: 'The main menu drifted to one side, and Confirm disappeared when post-level rewards appeared.',
+    mattered: 'A player could finish a level and still be blocked from continuing. Screen coverage and input context both needed attention.',
+    investigated: 'I centered authored menus within the safe area while extending decorative layers to the display edges. Rewards needed to keep menu controls available even when a completed story event was still loaded behind them.',
+    verified: 'Layout tests checked 35 assertions across phone and tablet proportions. The real post-level flow passed 111 checks covering results, EXP, the story event, all 11 queued reward prompts, and the return to the menu.'
   }
 ];
+
+function StoryImage({ src, alt, caption, className = '' }) {
+  return (
+    <figure className={`reignition-story-image ${className}`}>
+      <a href={src} target="_blank" rel="noopener noreferrer" aria-label={`Open full image: ${alt}`}>
+        <img src={src} alt={alt} loading="lazy" decoding="async" />
+      </a>
+      <figcaption>{caption}</figcaption>
+    </figure>
+  );
+}
 
 function StoryChapter({ number, title, children, className = '' }) {
   const reducedMotion = useReducedMotion();
@@ -87,23 +113,32 @@ function StoryChapter({ number, title, children, className = '' }) {
 
 function DebuggingCard({ issue, index }) {
   return (
-    <details className="reignition-debug-card">
+    <details className="reignition-debug-card" open={index < 2}>
       <summary>
         <span className="reignition-debug-index">{String(index + 1).padStart(2, '0')}</span>
         <span>{issue.title}</span>
         <span className="reignition-debug-toggle" aria-hidden="true" />
       </summary>
+      {issue.image && <StoryImage src={issue.image} alt={issue.alt} caption={issue.caption} className="reignition-bug-image" />}
       <dl>
         <div><dt>What I saw</dt><dd>{issue.seen}</dd></div>
         <div><dt>Why it mattered</dt><dd>{issue.mattered}</dd></div>
         <div><dt>How I investigated it</dt><dd>{issue.investigated}</dd></div>
         <div><dt>What was verified</dt><dd>{issue.verified}</dd></div>
+        {issue.code && <div><dt>The lifetime fix</dt><dd><pre className="reignition-code"><code>{issue.code}</code></pre></dd></div>}
       </dl>
     </details>
   );
 }
 
 export default function ReignitionProject({ project }) {
+  const reducedMotion = useReducedMotion();
+  const exploreStory = event => {
+    event.preventDefault();
+    const heading = document.getElementById('reignition-story-title');
+    heading?.focus({ preventScroll: true });
+    document.getElementById('reignition-story')?.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'start' });
+  };
   return (
     <article className="reignition-project">
       <section className="reignition-hero" aria-labelledby="reignition-title">
@@ -120,7 +155,7 @@ export default function ReignitionProject({ project }) {
           <div className="reignition-actions">
             <a href={REIGNITION_RELEASE} target="_blank" rel="noopener noreferrer" className="reignition-button">Download Now <IoGameController aria-hidden="true" /></a>
             {project.footageUrl && <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="reignition-button">Watch Gameplay <FaExternalLinkAlt aria-hidden="true" /></a>}
-            <a href="#reignition-story" className="reignition-story-link">Explore the development story</a>
+            <a href="#reignition-story" onClick={exploreStory} className="reignition-story-link">Explore the development story</a>
           </div>
         </div>
       </section>
@@ -128,72 +163,96 @@ export default function ReignitionProject({ project }) {
       <section id="reignition-story" className="reignition-story" aria-labelledby="reignition-story-title">
         <div className="reignition-story-line" aria-hidden="true" />
         <header className="reignition-story-heading">
-          <h2 id="reignition-story-title">Development Story</h2>
+          <p className="reignition-eyebrow">Development story / From desktop to device</p>
+          <h2 id="reignition-story-title" tabIndex={-1}>From desktop to iPhone &amp; iPad</h2>
           <p className="reignition-story-intro">The goal sounded straightforward: take Project Reignition and make it playable on my phone. Getting there meant adapting controls, rebuilding layouts, working through Apple’s signing process, and repeatedly testing what happened once the game left the desktop.</p>
         </header>
 
+        <div className="reignition-story-overview" aria-label="Project scope">
+          <div><span>My role</span><strong>iOS port &amp; mobile adaptation</strong></div>
+          <div><span>Runtime</span><strong>Godot 4.7 .NET · Metal Mobile</strong></div>
+          <div><span>Delivered</span><strong>v1.0.6 · build 2 · signed IPA</strong></div>
+        </div>
         <div className="reignition-timeline">
-          <StoryChapter number="01" title="Starting with an existing game">
-            <p>This was a port of an existing Godot .NET/C# project, not a game built from scratch for mobile. The first work was understanding how the project was put together, preparing an iOS build process, and finding desktop assumptions that did not carry over to a touch device.</p>
-            <p>That meant treating the desktop version as a starting point, then checking the things a phone changes: how a player gives input, how much screen space the game has, and how the app gets installed and launched on iOS.</p>
+          <StoryChapter number="01" title="Understand the game before changing the platform">
+            <p>Project Reignition is an existing fan remake of Sonic and the Secret Rings. The original developers built the game, its levels, and its assets. My project was to bring that desktop Godot .NET/C# game to iPhone and iPad while preserving the adventure they had created.</p>
+            <p>I started by tracing the input actions, player states, menus, loading transitions, saves, and resource pipeline. A phone changed more than the control scheme: the project needed an ARM64 build, mobile rendering, writable save locations, usable screen layouts, and a way to sign and install the app.</p>
+            <p>I used Codex as an AI coding collaborator while I directed the port, reported what happened on my devices, and tested successive builds. The process was iterative: a reported symptom became a focused investigation, then a change and a repeatable check.</p>
+            <StoryImage src={grinding} alt="Sonic grinding along a rail above water in Project Reignition." caption="The original game’s world and character work were the starting point. Supplied game image; its capture platform and build are not established." />
           </StoryChapter>
 
-          <StoryChapter number="02" title="Making the game playable with touch">
-            <p>I added on-screen movement and action controls and connected them to the game’s existing gameplay inputs, so touch could drive the same actions the game already understood.</p>
-            <p>Controls were only one part of playability. Menus also had to be reachable on a phone, and a level needed to end on a results screen where the player could confirm and continue.</p>
+          <StoryChapter number="02" title="Build a native iOS path, not just an export">
+            <p>I prepared a local Godot 4.7 .NET toolchain, matching iOS export templates, and .NET 10.0.401. The C# gameplay code had to compile ahead of time into a native framework for iPhoneOS; exporting a resource pack alone would not produce a playable .NET game.</p>
+            <p>The downloaded Godot editor’s CLI resolver preferred a system SDK over the local one, so the bootstrap adjusted that downloaded editor to select the project’s SDK. The export script also checked for managed-code failures because Godot could finish a native export even when its .NET export step had failed.</p>
+            <p>The game’s video pipeline needed a mobile-compatible route too. I recovered and converted all 48 videos to Theora for Godot’s built-in playback and checked that they were present in the final pack. The device build uses Godot’s Metal Mobile renderer and iOS-safe saves.</p>
+            <p>Simulator testing was another branch of the work: the official .NET simulator library contained x86_64 code despite advertising an ARM64 slice. I checked the actual architectures and used a simulator-only Compatibility-rendering override. Its software-rendering behavior could not stand in for real Metal device testing.</p>
           </StoryChapter>
 
-          <StoryChapter number="03" title="Adapting the interface to two screen sizes">
-            <p>I adapted the presentation for full-screen play on both iPhone and iPad. The two devices have different screen shapes and usable areas, so a layout that looked centered on one could feel shifted on the other.</p>
-            <p>On iPhone, the main menu appeared off-center, and the level-rewards screen could hide its confirmation button. Those were not cosmetic details: essential controls had to stay visible and reachable across both screen shapes.</p>
+          <StoryChapter number="03" title="Make touch work through the whole game">
+            <p>I built a persistent multitouch overlay around the game’s existing input actions: left-stick movement, a separate camera-drag region, and individual gameplay buttons. One finger could keep moving while another jumped, attacked, or triggered an equipped skill.</p>
+            <p>Each finger retained its assigned control until release. Inputs also needed to clear when the app lost focus, suspended, changed context, or resized, so a held touch could not leave Sonic moving after a transition. Touch input suppressed saved mouse and gyro behavior without rewriting the player’s bindings.</p>
+            <p>The overlay changes with the game: Confirm, Back, and Start in menus; pause and skip controls; gameplay actions during a level; and Confirm through results, EXP, and unlocks. A quick title-screen tap exposed another timing issue: a press and release between updates could be missed by a held-button check, so I added a regression for that interaction.</p>
+            <StoryImage src={touchGameplay} alt="Project Reignition tutorial gameplay with a movement stick, camera-drag area, and individual touch action buttons." caption="Supplied gameplay capture showing the touch overlay in a real level. The tutorial still displays a desktop F-key prompt here—this image illustrates the adaptation process rather than a claim that every instruction was rewritten." />
           </StoryChapter>
 
-          <StoryChapter number="04" title="The bugs that appeared on real devices" className="reignition-debugging-chapter">
-            <p className="reignition-chapter-lead">Each issue below is described from its observed symptom and the project notes. Where a root cause or exact code change was not documented, I have left it explicitly unclaimed.</p>
+          <StoryChapter number="04" title="Fit the phone, then fit the tablet">
+            <p>The wide iPhone and taller iPad exposed different layout assumptions. I made the game cover each display without stretching, transformed notch and home-indicator safe areas into viewport coordinates, and kept menus centered inside those bounds.</p>
+            <p>Decorative backgrounds extend to the screen edges. On iPad, the camera expands vertically to preserve the horizontal view rather than cropping it. I checked actual menus and gameplay at both aspect ratios; the shifted menu and missing reward confirmation became explicit regression cases.</p>
+          </StoryChapter>
+
+          <StoryChapter number="05" title="Follow the bugs past the first attempted fix" className="reignition-debugging-chapter">
+            <p className="reignition-chapter-lead">A desktop run, a clean build, and an installed app each answered a different question. These are the failures that pushed the port from “it exports” toward playable device builds.</p>
+            <p>The two model images below are clearly labeled reproductions made later with the actual game assets. They explain the visual symptoms; they are not original screenshots of the September iPhone failures.</p>
             <div className="reignition-debug-list">
               {DEBUGGING_ISSUES.map((issue, index) => <DebuggingCard key={issue.title} issue={issue} index={index} />)}
             </div>
           </StoryChapter>
 
-          <StoryChapter number="05" title="Getting builds onto Apple devices">
-            <p>I generated an IPA, then worked through the parts of Apple’s signing path that make an installable build more than an exported file: Xcode signing, provisioning, account setup, trusting the developer on the device, and keeping the device unlocked during installation.</p>
-            <p>Sideloadly and AltStore caused issues during this process, so I moved to the Xcode/iOS signing workflow. An app showing as installed was not a pass by itself; I still had to open it and check that gameplay started.</p>
-            <p>I tested on my iPhone 17, registered as <strong>Alejandro17</strong>, and an iPad. I also checked that each device actually had the newest build before treating a test result as current.</p>
-            <p className="reignition-doc-links">References: <a href={GODOT_IOS_EXPORT_GUIDE} target="_blank" rel="noopener noreferrer">Godot’s iOS export guide</a> and <a href={XCODE_SIGNING_GUIDE} target="_blank" rel="noopener noreferrer">Apple’s Xcode code-signing guide</a>.</p>
+          <StoryChapter number="06" title="Sign, install, launch—and check the version">
+            <p>Sideloadly and AltStore caused installation issues, so I used Xcode and iOS App Signer. An Apple-account refresh resolved Xcode’s failure to retrieve development teams; a free account appeared as a Personal Team. Xcode generated the development certificate and device profile, then iOS App Signer signed the IPA and its frameworks for installation.</p>
+            <p>Device pairing, an unlocked screen, developer trust, and a current provisioning profile were part of getting it running. When an installed app opened to gray, it reinforced why deployment and gameplay required separate checks.</p>
+            <p>I tested on my iPhone 17 Pro Max, named <strong>Alejandro17</strong>, and a 12.9-inch M1 iPad Pro. At one point the phone still had an older IPA. I checked the installed version and build on each device before judging whether a fix worked.</p>
+            <p>The final Rampage update—<strong>version 1.0.6, build 2</strong>—was installed and launched on both devices. Installation records verified that the existing save files stayed byte-identical through the update, before normal gameplay resumed.</p>
+            <p className="reignition-doc-links">Build records: <a href={IOS_NOTES} target="_blank" rel="noopener noreferrer">iOS port notes</a>. Platform references: <a href={GODOT_IOS_EXPORT_GUIDE} target="_blank" rel="noopener noreferrer">Godot export</a> and <a href={XCODE_SIGNING_GUIDE} target="_blank" rel="noopener noreferrer">Xcode signing</a>.</p>
           </StoryChapter>
 
-          <StoryChapter number="06" title="Building a repeatable workflow">
-            <p>The useful loop was concrete: reproduce a problem, make one focused change, build and export, install on hardware, test the affected flow, and repeat. After a fix, I retested the related input, screen, mission, or launch path instead of assuming a successful build meant the issue was gone.</p>
-            <p>I used targeted device checks for app launch, touch movement and actions, menus and level results, mission loading, and the affected fixes on both iPhone and iPad. These are manual hardware checks, not a claim of an automated regression suite.</p>
-            <p>The build/export scripts and the game’s test suite are not included in this portfolio repository, so I am not attributing specific script names or automated checks to them here. The repository linked below contains this portfolio and case-study page.</p>
+          <StoryChapter number="07" title="Turn each failure into a check">
+            <p>The workflow became: reproduce, isolate, change, build, install, and retest. I used separate test save data so automated gameplay checks would not overwrite normal progress, and compared the tested resource pack and native framework with the delivered build.</p>
+            <div className="reignition-evidence-grid">
+              <div><strong>360</strong><span>Recorded automated checks across touch, rendered gameplay, rewards, layout, remapping, and quick title taps.</span></div>
+              <div><strong>63</strong><span>Physical-iPhone checks for Rampage cold loading, startup preloading, and failure recovery.</span></div>
+              <div><strong>49</strong><span>Gameplay checks passed on the physical M1 iPad, including jumping, spin visibility, pause, and saves.</span></div>
+            </div>
+            <p>Those counts describe different suites and test scopes, not unique features or a complete playthrough. The build also passed native AOT compilation, while the IPA checks covered ZIP integrity, device families, landscape orientations, the game pack, and the native C# framework.</p>
+            <p className="reignition-doc-links">Explore the <a href={IOS_TESTS} target="_blank" rel="noopener noreferrer">regression tests</a> and <a href={`${GAME_REPOSITORY}/tree/c61e5d6bfa24dbdaa5d53c9fb4b695cefc597560/scripts/ios`} target="_blank" rel="noopener noreferrer">build and verification scripts</a>.</p>
           </StoryChapter>
 
-          <StoryChapter number="07" title="Outcome and lessons learned" className="reignition-outcome">
-            <p>The result is an iOS port with touch controls and mobile interface adaptations, developed through repeated installation and gameplay testing on iPhone and iPad. That process taught me to account for platform differences early, connect new input to existing gameplay, test layouts on real screen shapes, and treat signing and installation as part of the engineering work.</p>
-            <p>Most importantly, testing on actual hardware exposed problems that a successful desktop run—or an IPA that merely installed—could not answer.</p>
-
+          <StoryChapter number="08" title="From a working device build to a shareable release" className="reignition-outcome">
+            <p>The result was a native iPhone/iPad port with touch controls, adapted layouts, and recorded device gameplay. Normal Rampage gameplay on the phone reached 4 of 20 enemies defeated; the iPad records confirmed installation and normal launch, alongside its earlier gameplay regression run.</p>
+            <p>I then published the archived build on my fork with detailed installation instructions. The 2.65 GB IPA exceeded GitHub’s per-file limit, so the release contains two parts, a reassembly helper, and checksums. The original development profile has expired: testers must re-sign with their own active certificate and device profile.</p>
+            <div className="reignition-scene-gallery">
+              <StoryImage src={moonlitStage} alt="Sonic in a moonlit palace scene from Project Reignition." caption="Supplied game image: the adventure the port aims to preserve. Capture device and build unspecified." />
+              <StoryImage src={actionScene} alt="Sonic mid-action in a palace with enemies in the background." caption="Supplied game image: original character, environment, and action work credited to the game’s developers. Capture device and build unspecified." />
+            </div>
+            <p>The biggest lesson was that a port is a chain of assumptions to verify: input, rendering, resource lifetimes, layout, packaging, and deployment. Real hardware exposed failures a desktop build could not. A focused regression check made each resolved issue easier to keep resolved.</p>
+            <p className="reignition-limit-note">This was device-tested porting work, not a claim of a bug-free game. A full playthrough, every mission, network party play, battery usage, and sustained performance remain outside the recorded test coverage.</p>
             <figure className="reignition-gameplay">
-              <figcaption>Gameplay footage is linked from the project listing. Its recording device and build version were not specified, so this clip is not presented as a device-specific benchmark.</figcaption>
+              <figcaption>Watch the port running. The linked footage is a demonstration, not a performance benchmark; its exact recording build is not established here.</figcaption>
               {project.footageUrl && <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="reignition-gameplay-link">Open gameplay footage <FaExternalLinkAlt aria-hidden="true" /></a>}
             </figure>
-
             <div className="reignition-contribution">
               <h4>My contribution</h4>
-              <ul>
-                {['iOS integration', 'Touch controls', 'Responsive game UI', 'Debugging', 'Build packaging', 'Device testing'].map(item => <li key={item}>{item}</li>)}
-              </ul>
+              <ul>{['iOS integration & native C# builds', 'Multitouch controls', 'Phone & tablet layouts', 'Rendering & loading fixes', 'Regression tests', 'Signing, packaging & device testing'].map(item => <li key={item}>{item}</li>)}</ul>
             </div>
             <div className="reignition-built-with">
               <h4>Built with</h4>
-              <ul aria-label="Verified tools and technologies">
-                {['Godot', 'C#', '.NET', 'Xcode'].map(item => <li key={item}>{item}</li>)}
-              </ul>
+              <ul aria-label="Verified tools and technologies">{['Godot 4.7', 'C# / .NET', 'Godot Metal Mobile', 'Xcode', 'iOS App Signer', 'Codex'].map(item => <li key={item}>{item}</li>)}</ul>
             </div>
-
-            <p className="reignition-source-note">The public source link is for this portfolio and case study; a separate game-source repository is not linked in the project materials.</p>
+            <p className="reignition-source-note">Project Reignition and its original game content are the work of its original developers. My contribution is the iOS port and mobile adaptation. Sonic and associated characters belong to SEGA.</p>
             <nav className="reignition-final-links" aria-label="Project links">
-              {project.footageUrl && <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="reignition-button">Watch Gameplay <FaExternalLinkAlt aria-hidden="true" /></a>}
-              <a href={PORTFOLIO_REPOSITORY} target="_blank" rel="noopener noreferrer" className="reignition-source-link">View Source <FaExternalLinkAlt aria-hidden="true" /></a>
+              <a href={REIGNITION_RELEASE} target="_blank" rel="noopener noreferrer" className="reignition-button">Get the iOS Release <IoGameController aria-hidden="true" /></a>
+              {project.footageUrl && <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="reignition-source-link">Watch Gameplay <FaExternalLinkAlt aria-hidden="true" /></a>}
+              <a href={GAME_REPOSITORY} target="_blank" rel="noopener noreferrer" className="reignition-source-link">View Game Source <FaExternalLinkAlt aria-hidden="true" /></a>
             </nav>
           </StoryChapter>
         </div>
