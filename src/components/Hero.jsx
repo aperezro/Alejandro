@@ -1,7 +1,7 @@
-import { IoHammerSharp } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { FaArrowDown } from "react-icons/fa";
+import { FaArrowDown, FaBookOpen } from "react-icons/fa";
+import { IoHammerSharp } from "react-icons/io5";
 import { HERO_CONTENT } from "../constants";
 
 const Hero = () => {
@@ -57,10 +57,12 @@ const Hero = () => {
             {!failed && !reducedMotion && <video ref={videoRef} src={`${media}sonic-ios-preview.mp4`} poster={`${media}sonic-unleashed-fallback.jpg`} muted loop playsInline preload="metadata" onError={() => setFailed(true)} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} aria-label="Sonic Unleashed iOS port gameplay with touchscreen controls" className="relative h-full w-full bg-black object-contain" />}
             {!failed && !reducedMotion && <button type="button" onClick={togglePlayback} className="absolute bottom-3 right-3 rounded-full border border-white/30 bg-black/80 px-4 py-2 text-sm text-white hover:bg-black" aria-label={playing ? "Pause gameplay preview" : "Play gameplay preview"}>{playing ? "Pause" : "Play preview"}</button>}
           </div>
-          <a href="#/projects/unleashed-recompiled" className="block px-4 py-3 transition lg:px-5 lg:py-5 hover:bg-stone-900">
-            <h2 className="text-base font-semibold text-white lg:text-xl">Sonic Unleashed — iOS Port <IoHammerSharp aria-hidden="true" className="inline-block shrink-0 align-[-0.125em]" /></h2>
-            <p className="mt-2 hidden text-sm leading-relaxed text-stone-400 lg:block">Unleashed Recompiled running on iOS with native Metal rendering and touchscreen controls.</p>
-          </a>
+          <div className="px-4 py-3 lg:px-5 lg:py-5">
+            <h2 className="text-base font-semibold text-white lg:text-xl">Sonic Unleashed — iOS Port</h2>
+            <a href="#/projects/unleashed-recompiled" className="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-semibold text-stone-800 shadow-sm transition hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] focus-visible:scale-105">
+              Learn More <FaBookOpen aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </div>
     </section>

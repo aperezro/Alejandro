@@ -9,14 +9,21 @@ import Contact from './components/Contact'
 import { ABOUT_TEXT } from "./constants"
 import Aurora from './components/Aurora'
 import Galaxy from './components/Galaxy'
+import reignitionCover from './assets/projects/reignition-book-cover.jpg'
 
 const App = () => {
   const route = usePageRoute();
   const isUnleashed = route.page === 'project' && route.slug === 'unleashed-recompiled';
+  const isReignition = route.page === 'project' && route.slug === 'project-reignition';
   return (
-    <div className={`isolate overflow-x-clip text-stone-300 antialiased relative ${isUnleashed ? 'unleashed-theme' : ''}`}>
+    <div className={`isolate overflow-x-clip text-stone-300 antialiased relative ${isUnleashed ? 'unleashed-theme' : ''} ${isReignition ? 'reignition-theme' : ''}`}>
       {isUnleashed ? <div className="unleashed-sky fixed inset-0 -z-10" aria-hidden="true">
         <Galaxy density={1} glowIntensity={0.3} flareIntensity={1} starSpeed={0.5} mouseRepulsion={false} clickWarp={false} mouseInteraction={false} intro={false} dpr={1.5} />
+      </div> : isReignition ? <div
+        className="reignition-sky fixed inset-0 -z-10"
+        aria-hidden="true"
+        style={{ backgroundImage: `linear-gradient(180deg, rgba(10, 5, 5, 0.72), rgba(12, 5, 4, 0.82)), url(${reignitionCover})` }}
+      >
       </div> : <div className="fixed inset-0 -z-10">
         <div className="relative h-full w-full bg-black">
           <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
@@ -25,7 +32,7 @@ const App = () => {
       </div>}
 
       <div className="relative">
-        {!isUnleashed && <div className="absolute top-0 left-0 right-0 w-full h-[800px] z-0 pointer-events-none">
+        {!isUnleashed && !isReignition && <div className="absolute top-0 left-0 right-0 w-full h-[800px] z-0 pointer-events-none">
           <Aurora
             colorStops={["#7cff67","#B19EEF","#5227FF"]}
             blend={0.5}

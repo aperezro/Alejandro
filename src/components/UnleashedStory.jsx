@@ -1,15 +1,25 @@
+import { motion, useReducedMotion } from 'framer-motion';
 import installerError from '../assets/projects/unleashed-installer-error.png';
 import upsideDown from '../assets/projects/unleashed-upside-down.png';
 
 function Chapter({ number, title, children }) {
+  const reducedMotion = useReducedMotion();
+
   return (
-    <section className="unleashed-chapter" aria-labelledby={`unleashed-chapter-${number}`}>
+    <motion.section
+      className="unleashed-chapter"
+      aria-labelledby={`unleashed-chapter-${number}`}
+      initial={reducedMotion ? false : { opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: reducedMotion ? 0 : 0.55, ease: 'easeOut' }}
+    >
       <span className="unleashed-chapter-number" aria-hidden="true">{number}</span>
       <div className="unleashed-chapter-body">
         <h3 id={`unleashed-chapter-${number}`}>{title}</h3>
         {children}
       </div>
-    </section>
+    </motion.section>
   );
 }
 
@@ -38,6 +48,7 @@ export default function UnleashedStory({ releaseUrl }) {
         <figcaption>Working gameplay with touchscreen controls. This development recording shows a milestone, rather than a controlled performance benchmark.</figcaption>
       </figure>
 
+      <div className="unleashed-story-timeline">
       <Chapter number="01" title="Why This Game">
         <p>Sonic Unleashed was my favorite childhood game. After my Xbox 360 failed in Puerto Rico following Hurricane Maria, I lost access to it and kept looking for a way to play again.</p>
         <p>In June, a simple challenge gave that search a new direction:</p>
@@ -75,6 +86,14 @@ export default function UnleashedStory({ releaseUrl }) {
         <div className="unleashed-performance-note"><span>Early Vulkan build</span><strong>~5 FPS</strong><span>Proof of concept</span></div>
         <p>The first Vulkan build proved that the game could run on an iPhone. At roughly five frames per second, however, it was still a proof of concept. The next challenge was making it responsive enough to play.</p>
         <p>That changed the focus from reaching a visible frame to improving the graphics path, while continuing to resolve platform and rendering issues.</p>
+        <figure className="unleashed-story-figure unleashed-story-demo">
+          <div className="unleashed-footage-label"><span>Early Vulkan build</span><span>Approx. 5 FPS</span></div>
+          <video controls playsInline preload="none" poster={`${media}sonic-ios-early-gameplay-poster.jpg`} aria-label="Sonic Unleashed running slowly in an early iOS Vulkan build">
+            <source src={`${media}sonic-ios-early-gameplay.mp4`} type="video/mp4" />
+            Your browser does not support embedded video. <a href={`${media}sonic-ios-early-gameplay.mp4`}>Open the early gameplay recording</a>.
+          </video>
+          <figcaption>Early gameplay showing the roughly five-frames-per-second Vulkan proof of concept.</figcaption>
+        </figure>
       </Chapter>
 
       <Chapter number="05" title="Moving to Native Metal">
@@ -86,6 +105,14 @@ export default function UnleashedStory({ releaseUrl }) {
           <div><h4>Synchronization &amp; presentation</h4><p>Command submission and presentation needed to cooperate with the device’s drawable and application lifecycle.</p></div>
         </div>
         <p>I validated gameplay, audio, rendering, and lifecycle transitions on real iPhone and iPad hardware. The later footage shows the resulting experience. It represents progress across the Metal transition and other fixes, rather than isolating Metal as the cause of every improvement.</p>
+        <figure className="unleashed-story-figure unleashed-story-demo">
+          <div className="unleashed-footage-label"><span>Native Metal gameplay</span><span>iOS</span></div>
+          <video controls playsInline preload="none" poster={`${media}sonic-ios-native-metal-poster.jpg`} aria-label="Sonic Unleashed gameplay running on the native Metal iOS port">
+            <source src={`${media}sonic-ios-native-metal.mp4`} type="video/mp4" />
+            Your browser does not support embedded video. <a href={`${media}sonic-ios-native-metal.mp4`}>Open the native Metal gameplay recording</a>.
+          </video>
+          <figcaption>Gameplay running on the native Metal iOS port.</figcaption>
+        </figure>
       </Chapter>
 
       <Chapter number="06" title="Making It Behave Like a Mobile Game">
@@ -110,6 +137,7 @@ export default function UnleashedStory({ releaseUrl }) {
           <div className="unleashed-related-projects"><a href="#/projects/dusklight">Dusklight</a><a href="#/projects/project-reignition">Project Reignition</a></div>
         </div>
       </Chapter>
+      </div>
     </div>
   );
 }

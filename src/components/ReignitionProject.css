@@ -1,0 +1,128 @@
+.reignition-sky {
+  background-position: center 42%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.reignition-page { position: relative; isolation: isolate; }
+.reignition-page > nav, .reignition-page > a { position: relative; z-index: 1; }
+.reignition-project { color: #fff2df; }
+.reignition-hero {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 88px);
+  min-height: clamp(500px, 66vh, 720px);
+  padding: 36px clamp(20px, 4vw, 56px) 64px;
+  overflow: hidden;
+}
+.reignition-logo-column, .reignition-hero-copy { position: relative; z-index: 1; min-width: 0; }
+.reignition-logo-column { animation: reignition-enter-left .8s ease-out both; }
+.reignition-hero-copy { animation: reignition-enter-right .8s ease-out both; }
+.reignition-logo { display: block; width: 100%; max-width: 620px; margin: 0 auto; filter: drop-shadow(0 14px 36px #000c); }
+.reignition-hero-copy {
+  padding: clamp(24px, 3.5vw, 44px);
+  border: 1px solid #ffd59b42;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #190b0bea, #0c0808eF);
+  box-shadow: 0 24px 70px #0008;
+  backdrop-filter: blur(8px);
+}
+.reignition-eyebrow { margin-bottom: 16px; color: #ffd27c; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+.reignition-hero-copy h1 { color: #fff; font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -.045em; }
+.reignition-hero-copy h1 span { color: #ffc45e; }
+.reignition-summary { margin-top: 22px; color: #f3dfcc; font-size: 15px; line-height: 1.85; }
+.reignition-technologies { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 26px; padding: 0; list-style: none; }
+.reignition-technologies li { padding: 6px 11px; border: 1px solid #ffc77655; border-radius: 999px; background: #ff9c2412; color: #ffe0ac; font-size: 12px; }
+.reignition-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.reignition-button { display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; padding: 14px 20px; background: #fff5e6; color: #271108; font-weight: 700; transition: box-shadow 180ms ease, transform 180ms ease; }
+.reignition-button:hover { transform: translateY(-2px); box-shadow: 0 0 30px #ff9b3caa; }
+.reignition-story-link { color: #ffe0ac; font-size: 13px; text-underline-offset: 4px; }
+.reignition-story-link:hover { color: #fff; text-decoration: underline; }
+.reignition-fire-aurora {
+  position: fixed;
+  z-index: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  height: clamp(240px, 38vh, 520px);
+  opacity: .9;
+  pointer-events: none;
+  transform: translateX(-50%) scaleY(-1);
+}
+.reignition-story { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 28px 0 100px; }
+.reignition-story-heading { max-width: 800px; margin: 0 auto 42px; text-align: center; }
+.reignition-story-heading h2 { color: #fff; font-size: clamp(32px, 4vw, 48px); font-weight: 800; letter-spacing: -.04em; }
+.reignition-story-intro { margin-top: 20px; color: #f3dfcc; font-size: clamp(16px, 2vw, 18px); line-height: 1.85; }
+.reignition-timeline { position: relative; }
+.reignition-timeline::before { position: absolute; top: 12px; bottom: 12px; left: 24px; width: 1px; background: linear-gradient(#ffc76c55, #ff6e3b55 80%, transparent); content: ""; }
+.reignition-chapter { position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 24px; padding: 32px 0; border-top: 1px solid #ffd08b38; opacity: 0; transform: translateY(28px); transition: opacity 550ms ease-out, transform 550ms ease-out; }
+.reignition-chapter.is-visible { opacity: 1; transform: translateY(0); }
+.reignition-chapter-number { position: relative; z-index: 1; display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid #ffc76c66; border-radius: 50%; background: #170c09; color: #ffc76c; font-size: 12px; font-weight: 750; letter-spacing: .06em; }
+.reignition-chapter-body { min-width: 0; padding: clamp(20px, 3vw, 32px); border: 1px solid #ffc87830; border-radius: 18px; background: #100a09eF; box-shadow: 0 18px 50px #0005; }
+.reignition-chapter-body h3 { margin-bottom: 16px; color: #fff4e4; font-size: clamp(22px, 2.4vw, 30px); font-weight: 700; line-height: 1.25; }
+.reignition-chapter-body p { margin: 0 0 14px; color: #ecd8c7; font-size: 15px; line-height: 1.85; }
+.reignition-chapter-body p:last-child { margin-bottom: 0; }
+.reignition-chapter-lead { color: #ffe0ac !important; }
+.reignition-debugging-chapter .reignition-chapter-body { border-color: #ff8b514d; background: linear-gradient(145deg, #1b0d0beF, #100807f5); }
+.reignition-debug-list { display: grid; gap: 12px; margin-top: 24px; }
+.reignition-debug-card { overflow: hidden; border: 1px solid #ff9b5a55; border-radius: 12px; background: #080605c9; }
+.reignition-debug-card summary { display: grid; grid-template-columns: 40px minmax(0, 1fr) 20px; align-items: center; gap: 12px; min-height: 64px; padding: 14px 18px; color: #fff2df; font-size: 15px; font-weight: 650; cursor: pointer; list-style: none; }
+.reignition-debug-card summary::-webkit-details-marker { display: none; }
+.reignition-debug-card summary:focus-visible { outline: 2px solid #ffd27c; outline-offset: -4px; }
+.reignition-debug-index { color: #ffb56c; font-size: 11px; font-weight: 750; letter-spacing: .1em; }
+.reignition-debug-toggle { position: relative; width: 18px; height: 18px; }
+.reignition-debug-toggle::before, .reignition-debug-toggle::after { position: absolute; top: 8px; left: 3px; width: 12px; height: 2px; border-radius: 2px; background: #ffd27c; content: ""; transition: transform 180ms ease; }
+.reignition-debug-toggle::after { transform: rotate(90deg); }
+.reignition-debug-card[open] .reignition-debug-toggle::after { transform: rotate(0); }
+.reignition-debug-card dl { display: grid; gap: 0; margin: 0; padding: 0 20px 18px 70px; }
+.reignition-debug-card dl > div { padding: 12px 0; border-top: 1px solid #ffd08b24; }
+.reignition-debug-card dt { margin-bottom: 4px; color: #ffc76c; font-size: 12px; font-weight: 750; letter-spacing: .04em; }
+.reignition-debug-card dd { margin: 0; color: #ecd8c7; font-size: 14px; line-height: 1.75; }
+.reignition-doc-links a { color: #ffd27c; text-decoration: underline; text-underline-offset: 3px; }
+.reignition-doc-links a:hover { color: #fff; }
+.reignition-gameplay { margin: 24px 0; padding: 18px 20px; border: 1px solid #ffc87830; border-radius: 12px; background: #080605c9; }
+.reignition-gameplay figcaption { color: #ecd8c7; font-size: 13px; line-height: 1.7; }
+.reignition-gameplay-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; color: #ffd27c; font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.reignition-contribution, .reignition-built-with { margin-top: 22px; padding: 20px; border: 1px solid #ffc87830; border-radius: 12px; background: #190c09a8; }
+.reignition-contribution h4, .reignition-built-with h4 { margin-bottom: 12px; color: #fff2df; font-size: 14px; font-weight: 750; }
+.reignition-contribution ul, .reignition-built-with ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.reignition-contribution li, .reignition-built-with li { padding: 6px 10px; border: 1px solid #ffc77640; border-radius: 999px; color: #ffe0ac; font-size: 12px; }
+.reignition-final-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 26px; }
+.reignition-source-link { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #ffc87877; border-radius: 999px; padding: 13px 18px; color: #fff2df; font-size: 14px; font-weight: 700; }
+.reignition-source-link:hover { background: #ffc8781c; }
+.reignition-source-note { margin-top: 12px !important; color: #c9b4a2 !important; font-size: 12px !important; }
+@media (max-width: 899px) {
+  .reignition-hero { grid-template-columns: 1fr; gap: 24px; min-height: 0; padding: 20px 0 48px; }
+  .reignition-logo-column { width: min(100%, 560px); margin: 0 auto; }
+  .reignition-hero-copy { width: min(100%, 650px); margin: 0 auto; }
+  .reignition-fire-aurora { height: clamp(240px, 34vh, 380px); }
+  .reignition-story { padding-top: 20px; }
+}
+@media (max-width: 600px) {
+  .reignition-hero { padding-top: 12px; }
+  .reignition-logo { max-width: 500px; }
+  .reignition-hero-copy { padding: 22px; }
+  .reignition-timeline::before { left: 16px; }
+  .reignition-chapter { grid-template-columns: 36px minmax(0, 1fr); gap: 12px; padding: 24px 0; }
+  .reignition-chapter-number { width: 34px; height: 34px; font-size: 10px; }
+  .reignition-story-heading { text-align: left; }
+  .reignition-debug-card summary { grid-template-columns: 30px minmax(0, 1fr) 18px; gap: 8px; padding: 12px; font-size: 14px; }
+  .reignition-debug-card dl { padding: 0 14px 14px 50px; }
+  .reignition-gameplay, .reignition-contribution, .reignition-built-with { padding: 16px; }
+  .reignition-fire-aurora { height: clamp(220px, 32vh, 320px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reignition-logo-column, .reignition-hero-copy { animation: none; }
+  .reignition-chapter, .reignition-button, .reignition-debug-toggle::before, .reignition-debug-toggle::after { opacity: 1; transform: none; transition: none; }
+}
+@keyframes reignition-enter-left {
+  from { opacity: 0; transform: translateX(-48px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes reignition-enter-right {
+  from { opacity: 0; transform: translateX(48px); }
+  to { opacity: 1; transform: translateX(0); }
+}
