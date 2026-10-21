@@ -79,7 +79,7 @@ const Navbar = ({ route }) => {
       // autofocus cannot scroll the drawer sideways during the first frame.
       if (!wasOpen) dialog.showModal();
       const slide = panel.animate([
-        { transform: wasOpen ? currentTransform : 'translate3d(100%, 0, 0)' },
+        { transform: wasOpen ? currentTransform : `translate3d(${panel.getBoundingClientRect().width}px, 0, 0)` },
         { transform: 'translate3d(0, 0, 0)' }
       ], { duration, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'both' });
       const fade = shade.animate([{ opacity: wasOpen ? currentOpacity : 0 }, { opacity: 1 }], { duration, easing: 'ease-out', fill: 'both' });
