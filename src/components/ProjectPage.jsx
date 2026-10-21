@@ -10,8 +10,8 @@ export default function ProjectPage({ slug }) {
     return () => { document.title = 'Alejandro Perez Robles'; };
   }, [project]);
   return (
-    <div className="mx-auto max-w-6xl py-10 sm:py-16">
-      <a href="#projects" className="mb-8 inline-flex items-center gap-2 rounded-full border border-stone-600 bg-black/60 px-5 py-3 text-sm hover:bg-stone-800">← All Projects</a>
+    <div className={`mx-auto py-8 sm:py-12 ${slug === 'unleashed-recompiled' ? 'max-w-7xl' : 'max-w-6xl'}`}>
+      <a href="#projects" className="project-back-link mb-8 inline-flex items-center gap-2 rounded-full border border-stone-600 bg-black/60 px-5 py-3 text-sm hover:bg-stone-800">← All Projects</a>
       {!project ? <div className="py-20"><h1 className="text-4xl text-white">Project not found</h1><p className="mt-4">Choose a project from the navigation or return to the project list.</p></div> : project.slug === 'unleashed-recompiled' ? <FeaturedProject /> : (
         <article className="min-w-0">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">Project / {project.title}</p>
@@ -27,7 +27,7 @@ export default function ProjectPage({ slug }) {
           </div>
         </article>
       )}
-      {project && <nav aria-label="More projects" className="mt-12 border-t border-stone-800 pt-8"><h2 className="mb-5 text-lg font-semibold text-white">Explore more projects</h2><div className="flex flex-wrap gap-3">{PROJECT_PAGES.filter(item => item.slug !== slug).map(item => <a key={item.slug} href={`#/projects/${item.slug}`} className="rounded-full border border-stone-700 bg-black/60 px-4 py-2 text-sm hover:border-white hover:text-white">{item.title} <IoHammerSharp aria-hidden="true" className="ml-1 inline-block align-[-0.125em]" /></a>)}</div></nav>}
+      {project && project.slug !== 'unleashed-recompiled' && <nav aria-label="More projects" className="mt-12 border-t border-stone-800 pt-8"><h2 className="mb-5 text-lg font-semibold text-white">Explore more projects</h2><div className="flex flex-wrap gap-3">{PROJECT_PAGES.filter(item => item.slug !== slug).map(item => <a key={item.slug} href={`#/projects/${item.slug}`} className="rounded-full border border-stone-700 bg-black/60 px-4 py-2 text-sm hover:border-white hover:text-white">{item.title} <IoHammerSharp aria-hidden="true" className="ml-1 inline-block align-[-0.125em]" /></a>)}</div></nav>}
     </div>
   );
 }

@@ -1,35 +1,51 @@
-import { PROJECTS } from '../constants';
+import { motion } from 'framer-motion';
+import { IoGameController } from 'react-icons/io5';
+import unleashedLogo from '../assets/projects/unleashed-recompiled-logo.png';
+import UnleashedStory from './UnleashedStory';
+import './UnleashedProject.css';
 
-const FeaturedProject = () => {
-  const project = PROJECTS.find(project => project.title === 'Unleashed Recompiled');
-  const media = `${import.meta.env.BASE_URL}media/`;
+const RELEASE_URL = 'https://github.com/aperezro/UnleashedRecomp/releases/tag/ios-native-metal-v1.0.3';
+
+export default function FeaturedProject() {
   return (
-    <article id="sonic-ios" className="mx-auto mb-16 max-w-6xl overflow-hidden rounded-3xl border border-stone-700 bg-stone-950/90">
-      <div className="p-6 sm:p-9">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-green-300">Featured project · Independent engineering</p>
-        <h1 className="text-3xl font-semibold text-white sm:text-4xl">Sonic Unleashed — iOS Port</h1>
-        <p className="mt-3 max-w-3xl leading-relaxed text-stone-300">Porting the community-developed Unleashed Recompiled project to iPhone and iPad as a native ARM64 application.</p>
-      </div>
-      <video controls playsInline preload="none" poster={`${media}sonic-unleashed-fallback.jpg`} className="aspect-[4/3] max-h-[660px] w-full bg-black object-contain" aria-label="Full 22-second gameplay demonstration of Unleashed Recompiled on iOS">
-        <source src={`${media}sonic-ios-demo.mp4`} type="video/mp4" />
-        Your browser does not support embedded video. <a href={`${media}sonic-ios-demo.mp4`}>Download the gameplay demonstration.</a>
-      </video>
-      <div className="p-6 sm:p-9">
-        <p className="mb-7 text-sm text-stone-400">22-second demonstration captured on iOS, with touchscreen controls visible.</p>
-        <div className="grid gap-8 md:grid-cols-2">
-          <div><h2 className="mb-3 text-lg font-semibold text-white">My contributions</h2><p className="leading-relaxed text-stone-300">{project.description}</p></div>
-          <div><h2 className="mb-3 text-lg font-semibold text-white">Engineering challenges</h2>
-            <ul className="list-disc space-y-3 pl-5 leading-relaxed text-stone-300">
-              <li>Adapted application startup, signing, and memory mapping for ARM64 and the iOS lifecycle.</li>
-              <li>Replaced the Vulkan compatibility path with native Metal rendering and shader translation.</li>
-              <li>Resolved rendering orientation, aspect ratios, and background-resume freezes.</li>
-              <li>Built responsive touch controls and validated gameplay on iPhone and iPad.</li>
-            </ul>
-            <div className="mt-6 flex flex-wrap gap-2">{['C++', 'ARM64', 'iOS / iPadOS', 'Metal', 'SPIR-V', 'Xcode'].map(tech => <span key={tech} className="rounded-lg border border-stone-700 px-3 py-2 text-sm">{tech}</span>)}</div>
-          </div>
+    <article id="sonic-ios" className="unleashed-project">
+      <section className="unleashed-intro" aria-labelledby="unleashed-title">
+        <div className="unleashed-logo-column">
+          <img src={unleashedLogo} alt="Unleashed Recompiled" width="2554" height="1302" className="unleashed-project-logo" />
+          <p className="unleashed-logo-caption">A new home for a familiar adventure.</p>
         </div>
-      </div>
+        <div className="unleashed-description">
+          <p className="unleashed-eyebrow">Independent engineering · Native iOS port</p>
+          <h1 id="unleashed-title">Sonic Unleashed.<br /><span>Now on iPhone &amp; iPad.</span></h1>
+          <div className="unleashed-rule" />
+          <p>I ported the community-developed Unleashed Recompiled project to iPhone and iPad as a native ARM64 application, bringing Sonic Unleashed to Apple’s mobile hardware.</p>
+          <p>My work includes a native Metal renderer, SPIR-V to Metal shader translation, responsive touchscreen controls, and platform fixes for memory mapping, graphics initialization, and the iOS application lifecycle. Gameplay, audio, and rendering were validated on real iPhone and iPad hardware.</p>
+          <ul className="unleashed-technologies" aria-label="Project technologies">
+            {['C++', 'ARM64', 'Metal', 'iOS / iPadOS'].map(technology => <li key={technology}>{technology}</li>)}
+          </ul>
+          <div className="unleashed-actions">
+            <motion.a
+              href={RELEASE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download Now"
+              className="unleashed-download hero-action relative max-w-full overflow-hidden rounded-full bg-white text-lg text-stone-800 shadow-sm hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] focus-visible:scale-105"
+              whileHover="hover"
+              whileFocus="hover"
+              initial="initial"
+            >
+              <motion.span className="inline-flex items-center gap-2" variants={{ initial: { y: 0, opacity: 1 }, hover: { y: -20, opacity: 0 } }} transition={{ duration: 0.3, ease: 'easeInOut' }}>Download Now <IoGameController aria-hidden="true" /></motion.span>
+              <motion.span aria-hidden="true" className="absolute inset-0 flex items-center justify-center gap-2" variants={{ initial: { y: 20, opacity: 0 }, hover: { y: 0, opacity: 1 } }} transition={{ duration: 0.3, ease: 'easeInOut' }}>Download Now <IoGameController /></motion.span>
+            </motion.a>
+          </div>
+          <p className="unleashed-release-note">Native Metal preview v1.0.3 · Installation guide on GitHub</p>
+        </div>
+      </section>
+      <section id="development-story" className="unleashed-story" aria-labelledby="development-story-title">
+        <div className="unleashed-story-line" aria-hidden="true" />
+        <h2 id="development-story-title">Development Story</h2>
+        <UnleashedStory releaseUrl={RELEASE_URL} />
+      </section>
     </article>
   );
-};
-export default FeaturedProject;
+}

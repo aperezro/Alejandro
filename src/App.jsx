@@ -8,27 +8,31 @@ import Experience from './components/Experience'
 import Contact from './components/Contact'
 import { ABOUT_TEXT } from "./constants"
 import Aurora from './components/Aurora'
+import Galaxy from './components/Galaxy'
 
 const App = () => {
   const route = usePageRoute();
+  const isUnleashed = route.page === 'project' && route.slug === 'unleashed-recompiled';
   return (
-    <div className="isolate overflow-x-clip text-stone-300 antialiased relative">
-      <div className="fixed inset-0 -z-10">
+    <div className={`isolate overflow-x-clip text-stone-300 antialiased relative ${isUnleashed ? 'unleashed-theme' : ''}`}>
+      {isUnleashed ? <div className="unleashed-sky fixed inset-0 -z-10" aria-hidden="true">
+        <Galaxy density={1} glowIntensity={0.3} flareIntensity={1} starSpeed={0.5} mouseRepulsion={false} clickWarp={false} mouseInteraction={false} intro={false} dpr={1.5} />
+      </div> : <div className="fixed inset-0 -z-10">
         <div className="relative h-full w-full bg-black">
           <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
           <div className="absolute left-0 right-0 top-[-10%] h-[1000px] w-[1000px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]"></div>
         </div>
-      </div>
+      </div>}
 
       <div className="relative">
-        <div className="absolute top-0 left-0 right-0 w-full h-[800px] z-0 pointer-events-none">
+        {!isUnleashed && <div className="absolute top-0 left-0 right-0 w-full h-[800px] z-0 pointer-events-none">
           <Aurora
             colorStops={["#7cff67","#B19EEF","#5227FF"]}
             blend={0.5}
             amplitude={1.0}
             speed={1}
           />
-        </div>
+        </div>}
         <Navbar route={route} />
         <div className="container mx-auto px-4 sm:px-8 max-w-full relative z-10 pt-[84px] lg:pt-[94px]">
         <main>
