@@ -62,3 +62,38 @@
 @media (max-width: 600px) {
   .project-page :is(.unleashed-project-logo, .reignition-logo) { max-height: 73.92px; }
 }
+
+.project-story-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--project-accent) 55%, transparent); }
+.project-story-link svg { width: 11px; height: 11px; transition: transform 180ms ease; }
+.project-story-link:hover svg { transform: translateY(2px); }
+.project-story-link:focus-visible { outline-color: var(--project-accent); border-radius: 4px; }
+.engineering-highlights { margin: 24px auto 36px; padding: 24px; border: 1px solid color-mix(in srgb, var(--project-accent) 30%, transparent); border-radius: 16px; background: #04070ce8; }
+.project-page .engineering-highlights h3 { font-family: inherit; font-style: normal; font-size: 20px; font-weight: 600; line-height: 1.4; letter-spacing: normal; color: #f0f2f5; margin-bottom: 20px; }
+.engineering-highlights > ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 32px; list-style: none; padding: 0; margin: 0; }
+.engineering-highlights li strong { display: block; color: var(--project-accent); font-size: 15px; line-height: 1.5; margin-bottom: 6px; font-weight: 600; }
+.engineering-highlights li span { display: block; color: #d4dbe4; font-size: 15px; line-height: 1.75; }
+.story-outline { border-top: 1px solid #ffffff26; margin-top: 24px; padding-top: 8px; }
+.story-outline summary { cursor: pointer; padding: 12px 0; color: var(--project-accent); font-size: 14px; }
+.story-outline nav { display: grid; gap: 4px; margin-top: 8px; }
+.story-outline a { display: flex; align-items: baseline; gap: 12px; min-height: 44px; padding: 10px 8px; border-radius: 6px; color: #e0e5ec; font-size: 14px; line-height: 1.6; }
+.story-outline a span { color: var(--project-accent); font-size: 12px; }
+.story-outline a:hover { background: #ffffff12; }
+.project-more-links > a:not(.project-all-link) { display: flex; align-items: flex-start; flex-direction: column; gap: 4px; }
+.project-neighbor-label { font-size: 12px; color: #d6d3d1; }
+.project-more-links > .project-all-link { align-self: center; min-height: 44px; }
+.project-page :is(h2, h3)[tabindex="-1"]:focus-visible { outline: 2px solid var(--project-accent); outline-offset: 6px; }
+.project-page :is(p, dd, figcaption, li) { overflow-wrap: break-word; }
+@media (max-width: 600px) {
+  .engineering-highlights { padding: 20px; }
+  .project-page .project-hero-actions { align-items: stretch; }
+  .project-page :is(.unleashed-story, .dusklight-story, .reignition-story) { padding-bottom: 40px; }
+  .project-page .project-more { margin-top: 24px; padding-top: 24px; }
+  .engineering-highlights > ul { grid-template-columns: 1fr; gap: 18px; }
+  .project-page .engineering-highlights li span,
+  .project-page :is(.unleashed-story-intro, .unleashed-description > p:not(.unleashed-eyebrow), .dusklight-summary, .reignition-summary, .unleashed-chapter-body p, .dusklight-chapter-body p, .reignition-chapter-body p, .reignition-debug-card dd, .unleashed-lifecycle-story dd) { font-size: 16px; line-height: 1.8; }
+  .project-page .reignition-debug-card summary { font-size: 16px; line-height: 1.5; padding-top: 14px; padding-bottom: 14px; }
+  .project-page .project-hero-actions > a { min-height: 48px; line-height: 1.3; }
+  .project-page .project-hero-actions > .hero-action { padding-top: 10px; padding-bottom: 10px; }
+  .project-page :is(.unleashed-chapter-grid, .unleashed-engineering-cards, .dusklight-chapter-body, .reignition-chapter-body) { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .project-story-link svg { transition: none; } }

@@ -12,6 +12,11 @@ export default function ProjectPage({ slug }) {
     document.title = project ? `${project.title} | Alejandro Pérez` : 'Project not found | Alejandro Pérez';
     return () => { document.title = 'Alejandro Perez Robles'; };
   }, [project]);
+  const projectIndex = PROJECT_PAGES.findIndex(item => item.slug === slug);
+  const neighbors = project ? [
+    { label: 'Previous project', project: PROJECT_PAGES[(projectIndex + PROJECT_PAGES.length - 1) % PROJECT_PAGES.length] },
+    { label: 'Next project', project: PROJECT_PAGES[(projectIndex + 1) % PROJECT_PAGES.length] },
+  ] : [];
   return (
     <div className={`project-page mx-auto py-4 sm:py-5 ${['unleashed-recompiled', 'project-reignition', 'dusklight'].includes(slug) ? 'max-w-7xl' : 'max-w-6xl'} ${slug === 'project-reignition' ? 'reignition-page' : ''} ${slug === 'dusklight' ? 'dusklight-page' : ''}`}>
       <a href="#projects" className="project-back-link mb-4 inline-flex items-center gap-2 rounded-full border border-stone-600 bg-black/60 px-5 py-3 text-sm hover:bg-stone-800">← All Projects</a>
@@ -30,7 +35,7 @@ export default function ProjectPage({ slug }) {
           </div>
         </article>
       )}
-      {project && <nav aria-label="More projects" className="project-more"><h2 >Explore more projects</h2><div className="project-more-links">{PROJECT_PAGES.filter(item => item.slug !== slug).map(item => <a key={item.slug} href={`#/projects/${item.slug}`} >{projectPageTitle(item)} <IoHammerSharp aria-hidden="true" className="ml-1 inline-block align-[-0.125em]" /></a>)}</div></nav>}
+      {project && <nav aria-label="More projects" className="project-more"><h2>Explore more projects</h2><div className="project-more-links">{neighbors.map(({ label, project: item }) => <a key={item.slug} href={`#/projects/${item.slug}`}><span className="project-neighbor-label">{label}</span><span>{projectPageTitle(item)} <IoHammerSharp aria-hidden="true" className="ml-1 inline-block align-[-0.125em]" /></span></a>)}<a className="project-all-link" href="#projects">All Projects</a></div></nav>}
     </div>
   );
 }

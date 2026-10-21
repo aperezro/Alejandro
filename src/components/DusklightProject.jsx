@@ -1,12 +1,13 @@
+import EngineeringHighlights from './EngineeringHighlights';
 import { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import dusklightLogo from '../assets/projects/dusklight-logo.webp';
-import touchTitle from '../assets/projects/dusklight-story/touch-title.png';
-import controllerBefore from '../assets/projects/dusklight-story/controller-before.png';
-import controllerAfter from '../assets/projects/dusklight-story/controller-after.png';
-import earlyBuild from '../assets/projects/dusklight-story/early-build.png';
-import assignmentWarning from '../assets/projects/dusklight-story/assignment-warning.png';
+import touchTitle from '../assets/projects/dusklight-story/touch-title.webp';
+import controllerBefore from '../assets/projects/dusklight-story/controller-before.webp';
+import controllerAfter from '../assets/projects/dusklight-story/controller-after.webp';
+import earlyBuild from '../assets/projects/dusklight-story/early-build.webp';
+import assignmentWarning from '../assets/projects/dusklight-story/assignment-warning.webp';
 import modReference from '../assets/projects/dusklight-story/mod-reference.webp';
 import gameReference from '../assets/projects/dusklight-story/game-reference.webp';
 import './DusklightProject.css';
@@ -14,8 +15,20 @@ import ProjectHeroDetails from './ProjectHeroDetails';
 
 const PROJECT_URL = 'https://twilitrealm.dev';
 
+const STORY_IMAGE_DIMENSIONS = {
+  [dusklightLogo]: { width: 2310, height: 495 },
+  [touchTitle]: { width: 2868, height: 1320 },
+  [controllerBefore]: { width: 1320, height: 581 },
+  [controllerAfter]: { width: 2868, height: 1320 },
+  [earlyBuild]: { width: 2868, height: 1320 },
+  [assignmentWarning]: { width: 2868, height: 1320 },
+  [modReference]: { width: 960, height: 540 },
+  [gameReference]: { width: 2560, height: 1440 },
+};
+
 function StoryImage({ src, alt, caption }) {
-  return <figure className="dusklight-story-image"><a href={src} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size image: ${alt}`}><img src={src} alt={alt} loading="lazy" decoding="async" /></a><figcaption>{caption}</figcaption></figure>;
+  const dimensions = STORY_IMAGE_DIMENSIONS[src];
+  return <figure className="dusklight-story-image"><a href={src} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size image: ${alt}`}><img src={src} alt={alt} width={dimensions.width} height={dimensions.height} loading="lazy" decoding="async" /></a><figcaption>{caption}</figcaption></figure>;
 }
 
 function StoryChapter({ number, title, children }) {
@@ -47,7 +60,7 @@ function StoryChapter({ number, title, children }) {
     >
       <span className="dusklight-chapter-number" aria-hidden="true">{number}</span>
       <div className="dusklight-chapter-body">
-        <h3 id={`dusklight-chapter-${number}`}>{title}</h3>
+        <h3 tabIndex={-1} id={`dusklight-chapter-${number}`}>{title}</h3>
         {children}
       </div>
     </section>
@@ -59,7 +72,7 @@ export default function DusklightProject({ project }) {
     <article className="dusklight-project">
       <section className="dusklight-hero" aria-labelledby="dusklight-title">
         <div className="dusklight-logo-column">
-          <img src={dusklightLogo} alt="Dusklight" className="dusklight-logo" />
+          <img src={dusklightLogo} width={2310} height={495} alt="Dusklight" className="dusklight-logo" />
         </div>
         <div className="dusklight-hero-copy">
           <p className="dusklight-eyebrow">Open-source collaboration · iPhone &amp; iPad</p>
@@ -82,6 +95,8 @@ export default function DusklightProject({ project }) {
           <h2 id="dusklight-story-title" tabIndex={-1}>Development Story</h2>
           <p>The goal was straightforward: play Twilight Princess on an iPhone without a physical controller. Getting there meant making a touch overlay behave like a controller throughout the existing game, settings, and input pipeline.</p>
         </header>
+
+        <EngineeringHighlights slug="dusklight" />
 
         <div className="dusklight-timeline">
           <StoryChapter number="01" title="Start with the missing way to play">

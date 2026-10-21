@@ -1,3 +1,4 @@
+import EngineeringHighlights from './EngineeringHighlights';
 import { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { FaExternalLinkAlt } from 'react-icons/fa';
@@ -72,11 +73,24 @@ const DEBUGGING_ISSUES = [
   }
 ];
 
+const STORY_IMAGE_DIMENSIONS = {
+  [reignitionLogo]: { width: 512, height: 294 },
+  [pupilReproduction]: { width: 1600, height: 1000 },
+  [spinReproduction]: { width: 1600, height: 1000 },
+  [spinGlitchGameplay]: { width: 2347, height: 1320 },
+  [ipadHandsOn]: { width: 926, height: 721 },
+  [touchGameplay]: { width: 1280, height: 959 },
+  [grinding]: { width: 1280, height: 719 },
+  [moonlitStage]: { width: 1280, height: 719 },
+  [actionScene]: { width: 1280, height: 719 },
+};
+
 function StoryImage({ src, alt, caption, className = '' }) {
+  const dimensions = STORY_IMAGE_DIMENSIONS[src];
   return (
     <figure className={`reignition-story-image ${className}`}>
       <a href={src} target="_blank" rel="noopener noreferrer" aria-label={`Open full image: ${alt}`}>
-        <img src={src} alt={alt} loading="lazy" decoding="async" />
+        <img src={src} alt={alt} width={dimensions.width} height={dimensions.height} loading="lazy" decoding="async" />
       </a>
       <figcaption>{caption}</figcaption>
     </figure>
@@ -112,7 +126,7 @@ function StoryChapter({ number, title, children, className = '' }) {
     >
       <span className="reignition-chapter-number" aria-hidden="true">{number}</span>
       <div className="reignition-chapter-body">
-        <h3 id={`reignition-chapter-${number}`}>{title}</h3>
+        <h3 tabIndex={-1} id={`reignition-chapter-${number}`}>{title}</h3>
         {children}
       </div>
     </section>
@@ -130,10 +144,10 @@ function DebuggingCard({ issue, index }) {
       {issue.image && <StoryImage src={issue.image} alt={issue.alt} caption={issue.caption} className="reignition-bug-image" />}
       {issue.recreation && <StoryImage src={issue.recreation.src} alt={issue.recreation.alt} caption={issue.recreation.caption} className="reignition-bug-image" />}
       <dl>
-        <div><dt>What I saw</dt><dd>{issue.seen}</dd></div>
-        <div><dt>Why it mattered</dt><dd>{issue.mattered}</dd></div>
-        <div><dt>How I investigated it</dt><dd>{issue.investigated}</dd></div>
-        <div><dt>What was verified</dt><dd>{issue.verified}</dd></div>
+        <div><dt>Problem</dt><dd>{issue.seen}</dd></div>
+        <div><dt>Impact</dt><dd>{issue.mattered}</dd></div>
+        <div><dt>Investigation &amp; solution</dt><dd>{issue.investigated}</dd></div>
+        <div><dt>Result &amp; limits</dt><dd>{issue.verified}</dd></div>
         {issue.code && <div><dt>The lifetime fix</dt><dd><pre className="reignition-code"><code>{issue.code}</code></pre></dd></div>}
       </dl>
     </details>
@@ -145,7 +159,7 @@ export default function ReignitionProject({ project }) {
     <article className="reignition-project">
       <section className="reignition-hero" aria-labelledby="reignition-title">
         <div className="reignition-logo-column">
-          <img src={reignitionLogo} alt="Project Reignition" className="reignition-logo" />
+          <img src={reignitionLogo} width={512} height={294} alt="Project Reignition" className="reignition-logo" />
         </div>
         <div className="reignition-hero-copy">
           <p className="reignition-eyebrow">Project / iPhone &amp; iPad port</p>
@@ -168,6 +182,8 @@ export default function ReignitionProject({ project }) {
           <h2 id="reignition-story-title" tabIndex={-1}>Development Story</h2>
           <p className="reignition-story-intro">The goal sounded straightforward: take Project Reignition and make it playable on my phone. Getting there meant adapting controls, rebuilding layouts, working through Apple’s signing process, and repeatedly testing what happened once the game left the desktop.</p>
         </header>
+
+        <EngineeringHighlights slug="project-reignition" />
 
         <div className="reignition-timeline">
           <StoryChapter number="01" title="Understand the game before changing the platform">

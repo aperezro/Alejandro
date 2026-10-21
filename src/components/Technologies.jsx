@@ -14,7 +14,7 @@ import { FaAws } from "react-icons/fa6";
 import { SiXcode } from "react-icons/si";
 
 
-import{animate, motion} from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 
 
 
@@ -40,7 +40,7 @@ const iconVariants = (duration) => ({
 const Technologies = () => {
   return (
     <div className="pb-24">
-<motion.div 
+<Motion.div
   className="my-20 flex justify-center"
   whileInView={{ opacity: 1, y: 0 }}
   initial={{ opacity: 0, y: -100 }}
@@ -53,132 +53,132 @@ const Technologies = () => {
       </h2>
     </div>
   </div>
-</motion.div>
+</Motion.div>
 
-        <motion.div 
+        <Motion.div
         whileInView={{opacity: 1,x: 0 }}
         initial={{opacity: 0,x: -100 }}
         transition={{duration: 1.5}}
         className="flex flex-wrap items-center justify-center gap-4 max-w-full overflow-hidden px-4">
-            
-            <motion.div
+
+            <Motion.div
                 initial="initial"
                 animate="animate"
                 variants={iconVariants(2.5)}
                 className="p-4" >
-            
-                <RiReactjsLine className="text-5xl lg:text-6xl text-cyan-400" />
-            </motion.div>
 
-            <motion.div
+                <RiReactjsLine role="img" aria-label="React" className="text-5xl lg:text-6xl text-cyan-400" />
+            </Motion.div>
+
+            <Motion.div
             initial="initial"
                 animate="animate"
                 variants={iconVariants(2)}
                  className="p-4">
-                <TbBrandNextjs className="text-5xl lg:text-6xl" />
-            </motion.div>
+                <TbBrandNextjs role="img" aria-label="Next.js" className="text-5xl lg:text-6xl" />
+            </Motion.div>
 
-            
-            
 
-            <motion.div 
+
+
+            <Motion.div
             initial="initial"
             animate="animate"
                 variants={iconVariants(6)}
             className="p-4">
-                <FaNodeJs  className="text-5xl lg:text-6xl text-green-500" />
-            </motion.div>
+                <FaNodeJs role="img" aria-label="Node.js"  className="text-5xl lg:text-6xl text-green-500" />
+            </Motion.div>
 
-            <motion.div 
+            <Motion.div
             initial="initial"
             animate="animate"
             variants={iconVariants(4)}
             className="p-4">
-                <FaShopify  className="text-5xl lg:text-6xl text-green-300" />
-            </motion.div>
+                <FaShopify role="img" aria-label="Shopify"  className="text-5xl lg:text-6xl text-green-300" />
+            </Motion.div>
 
-            <motion.div
+            <Motion.div
             initial="initial"
             animate="animate"
-            variants={iconVariants(2.5)} 
+            variants={iconVariants(2.5)}
             className="p-4">
-                <IoLogoFirebase  className="text-5xl lg:text-6xl text-orange-300" />
-            </motion.div>
+                <IoLogoFirebase role="img" aria-label="Firebase"  className="text-5xl lg:text-6xl text-orange-300" />
+            </Motion.div>
 
-            <motion.div 
+            <Motion.div
             initial="initial"
             animate="animate"
             variants={iconVariants(4.5)}
             className="p-4">
-                <FaAndroid  className="text-5xl lg:text-6xl text-green-400" />
-            </motion.div>
+                <FaAndroid role="img" aria-label="Android"  className="text-5xl lg:text-6xl text-green-400" />
+            </Motion.div>
 
-            <motion.div  
+            <Motion.div
             initial="initial"
             animate="animate"
             variants={iconVariants(2.5)}
             className="p-4">
-                <FaHtml5  className="text-5xl lg:text-6xl text-orange-500" />
-            </motion.div>
+                <FaHtml5 role="img" aria-label="HTML5"  className="text-5xl lg:text-6xl text-orange-500" />
+            </Motion.div>
 
-            <motion.div  
+            <Motion.div
             initial="initial"
             animate="animate"
             variants={iconVariants(3.5)}
             className="p-4">
-                <FaPython  className="text-5xl lg:text-6xl text-yellow-500" />
-            </motion.div>
-            <motion.div 
+                <FaPython role="img" aria-label="Python"  className="text-5xl lg:text-6xl text-yellow-500" />
+            </Motion.div>
+            <Motion.div
             initial="initial"
             animate="animate"
             variants={iconVariants(2.5)}
             className="p-4">
-                <SiMongodb className="text-5xl lg:text-6xl text-green-500" />
-            </motion.div>
-            
-            <motion.div  
+                <SiMongodb role="img" aria-label="MongoDB" className="text-5xl lg:text-6xl text-green-500" />
+            </Motion.div>
+
+            <Motion.div
             initial="initial"
             animate="animate"
             variants={iconVariants(2.5)}
             className="p-4">
-                <DiGit  className="text-5xl lg:text-6xl text-stone-500" />
-            </motion.div>
-            <motion.div  
+                <DiGit role="img" aria-label="Git"  className="text-5xl lg:text-6xl text-stone-500" />
+            </Motion.div>
+            <Motion.div
             initial="initial"
             animate="animate"
             variants={iconVariants(2)}
             className="p-4">
-                <DiJava  className="text-5xl lg:text-6xl text-red-500" />
-            </motion.div>
-             <motion.div  
+                <DiJava role="img" aria-label="Java"  className="text-5xl lg:text-6xl text-red-500" />
+            </Motion.div>
+             <Motion.div
             initial="initial"
             animate="animate"
             variants={iconVariants(1.5)}
             className="p-4">
-                <FaDocker className="text-5xl lg:text-6xl text-blue-500" />
-            </motion.div>
+                <FaDocker role="img" aria-label="Docker" className="text-5xl lg:text-6xl text-blue-500" />
+            </Motion.div>
 
-            <motion.div  
+            <Motion.div
             initial="initial"
             animate="animate"
             variants={iconVariants(3)}
             className="p-4">
-                <FaAws className="text-5xl lg:text-6xl text-orange-500" />
-            </motion.div>
+                <FaAws role="img" aria-label="AWS" className="text-5xl lg:text-6xl text-orange-500" />
+            </Motion.div>
 
-            <motion.div  
+            <Motion.div
             initial="initial"
             animate="animate"
             variants={iconVariants(2.5)}
             className="p-4">
-                <SiXcode className="text-5xl lg:text-6xl text-blue-400" />
-            </motion.div>
-
-            
+                <SiXcode role="img" aria-label="Xcode" className="text-5xl lg:text-6xl text-blue-400" />
+            </Motion.div>
 
 
 
-            </motion.div>
+
+
+            </Motion.div>
 
     </div>
   )

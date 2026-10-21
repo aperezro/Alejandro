@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion as Motion, useReducedMotion } from "framer-motion";
 import { FaArrowDown, FaBookOpen } from "react-icons/fa";
 import { IoHammerSharp } from "react-icons/io5";
 import { HERO_CONTENT } from "../constants";
@@ -29,10 +29,11 @@ const Hero = () => {
       <div className="order-2 min-w-0 text-center lg:order-1 lg:text-left">
         <h1 className="animated-gradient-text pb-3 text-4xl tracking-tighter sm:text-5xl lg:text-6xl xl:text-7xl">Alejandro Pérez</h1>
         <p className="text-2xl font-medium text-stone-100 sm:text-3xl">Software Engineer</p>
+        <div className="hero-context"><a href="#experience">Software Engineer at John Deere</a><a href="#contact">Get in touch</a></div>
         <p className="mx-auto my-6 max-w-xl text-left text-lg leading-relaxed text-stone-300 lg:mx-0">{HERO_CONTENT}</p>
         <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
           <a href="#projects" className="hero-action rounded-full bg-white text-lg text-stone-800 shadow-sm transition hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">View Projects <IoHammerSharp aria-hidden="true" className="inline-block shrink-0 align-[-0.125em]" /></a>
-          <motion.a
+          <Motion.a
             href={`${import.meta.env.BASE_URL}resume.pdf`}
             target="_blank"
             rel="noopener noreferrer"
@@ -42,9 +43,9 @@ const Hero = () => {
             whileFocus="hover"
             initial="initial"
           >
-            <motion.div variants={{ initial: { y: 0, opacity: 1 }, hover: { y: -20, opacity: 0 } }} transition={{ duration: 0.3, ease: "easeInOut" }}>Download Resume</motion.div>
-            <motion.div aria-hidden="true" variants={{ initial: { y: 20, opacity: 0 }, hover: { y: 0, opacity: 1 } }} transition={{ duration: 0.3, ease: "easeInOut" }} className="absolute inset-0 flex items-center justify-center">Download Resume <FaArrowDown className="ml-2" /></motion.div>
-          </motion.a>
+            <Motion.div variants={{ initial: { y: 0, opacity: 1 }, hover: { y: -20, opacity: 0 } }} transition={{ duration: 0.3, ease: "easeInOut" }}>Download Resume</Motion.div>
+            <Motion.div aria-hidden="true" variants={{ initial: { y: 20, opacity: 0 }, hover: { y: 0, opacity: 1 } }} transition={{ duration: 0.3, ease: "easeInOut" }} className="absolute inset-0 flex items-center justify-center">Download Resume <FaArrowDown className="ml-2" /></Motion.div>
+          </Motion.a>
         </div>
       </div>
       <div className="order-1 mx-auto w-full max-w-[416px] min-w-0 rounded-3xl bg-gradient-to-r from-stone-900 via-stone-300 to-stone-900 p-[3px] shadow-2xl lg:order-2 lg:mx-0 lg:max-w-none">

@@ -1,3 +1,4 @@
+import EngineeringHighlights from './EngineeringHighlights';
 import { motion as Motion, useReducedMotion } from 'framer-motion';
 import installerError from '../assets/projects/unleashed-installer-error.png';
 import upsideDown from '../assets/projects/unleashed-upside-down.png';
@@ -18,7 +19,7 @@ function Chapter({ number, title, children }) {
     >
       <span className="unleashed-chapter-number" aria-hidden="true">{number}</span>
       <div className="unleashed-chapter-body">
-        <h3 id={`unleashed-chapter-${number}`}>{title}</h3>
+        <h3 tabIndex={-1} id={`unleashed-chapter-${number}`}>{title}</h3>
         {children}
       </div>
     </Motion.section>
@@ -41,6 +42,7 @@ export default function UnleashedStory({ releaseUrl }) {
   return (
     <div className="unleashed-story-content">
       <p className="unleashed-story-intro">From a childhood favorite to a native iOS port. The finished game came after installation failures, a black screen, an upside-down first frame, and a renderer that still needed to become playable.</p>
+      <EngineeringHighlights slug="unleashed-recompiled" />
       <figure className="unleashed-story-figure unleashed-story-demo">
         <div className="unleashed-footage-label"><span>The result</span><span>Native Metal · iOS</span></div>
         <video controls playsInline preload="none" poster={`${media}sonic-ios-story-poster.jpg`} aria-label="Working Sonic Unleashed native iOS port with touchscreen controls">

@@ -188,12 +188,13 @@ export default function Aurora(props) {
       ctn.classList.add('aurora-fallback');
     };
     gl.canvas.addEventListener('webglcontextlost', onContextLost);
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     const update = t => {
       if (contextLost) return;
       animateId = requestAnimationFrame(update);
       const { time = t * 0.01, speed = 1.0 } = propsRef.current;
-      program.uniforms.uTime.value = time * speed * 0.1;
+      program.uniforms.uTime.value = motionPreference.matches ? 0 : time * speed * 0.1;
       program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
       program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
       const stops = propsRef.current.colorStops ?? colorStops;

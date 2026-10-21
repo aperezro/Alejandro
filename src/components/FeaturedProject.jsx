@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion as Motion, useReducedMotion } from 'framer-motion';
 import { IoGameController, IoHammerSharp } from 'react-icons/io5';
 import unleashedLogo from '../assets/projects/unleashed-recompiled-logo.png';
 import ProjectHeroDetails from './ProjectHeroDetails';
@@ -13,15 +13,15 @@ export default function FeaturedProject() {
   return (
     <article id="sonic-ios" className="unleashed-project">
       <section className="unleashed-intro" aria-labelledby="unleashed-title">
-        <motion.div
+        <Motion.div
           className="unleashed-logo-column"
           initial={reducedMotion ? false : { opacity: 0, x: -48 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: reducedMotion ? 0 : 0.8, ease: 'easeOut' }}
         >
           <img src={unleashedLogo} alt="Unleashed Recompiled" width="2554" height="1302" className="unleashed-project-logo" />
-        </motion.div>
-        <motion.div
+        </Motion.div>
+        <Motion.div
           className="unleashed-description"
           initial={reducedMotion ? false : { opacity: 0, x: 48 }}
           animate={{ opacity: 1, x: 0 }}
@@ -46,7 +46,7 @@ export default function FeaturedProject() {
             <a href="https://lnkd.in/p/gE7V83xj" target="_blank" rel="noopener noreferrer" className="project-secondary-action hero-action rounded-full text-lg">View Gameplay <IoHammerSharp aria-hidden="true" /></a>
           </div>
           <ProjectHeroDetails storyId="development-story" note="Native Metal preview · v1.0.3" rightsHolder="SEGA" />
-        </motion.div>
+        </Motion.div>
       </section>
       <section id="development-story" className="unleashed-story" aria-labelledby="development-story-title">
         <div className="unleashed-story-line" aria-hidden="true" />
