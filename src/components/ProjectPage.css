@@ -38,6 +38,8 @@
 .unleashed-chapter-body > .unleashed-smiling-image { max-width: 520px; margin-left: auto; margin-right: auto; }
 @media (max-width: 899px) {
   .project-page :is(.unleashed-intro, .dusklight-hero, .reignition-hero) { grid-template-columns: 1fr; gap: 16px; }
+  .project-page :is(.unleashed-logo-column, .dusklight-logo-column, .reignition-logo-column) { width: 100%; }
+  .project-page :is(.unleashed-project-logo, .dusklight-logo, .reignition-logo) { width: auto; max-width: 100%; max-height: 126px; margin: 0 auto; object-fit: contain; }
 }
 @media (max-width: 600px) {
   .project-page :is(.unleashed-description, .dusklight-hero-copy, .reignition-hero-copy) { padding: 18px; }
@@ -48,6 +50,7 @@
 @media (max-width: 600px) {
   .project-page .project-back-link { margin-bottom: 4px; }
   .project-page :is(.unleashed-intro, .dusklight-hero, .reignition-hero) { gap: 12px; padding-top: 4px; }
+  .project-page :is(.unleashed-project-logo, .dusklight-logo, .reignition-logo) { max-height: 67.2px; }
   .project-page .project-hero-actions > a { text-align: center; }
 }
 
