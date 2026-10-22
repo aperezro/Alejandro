@@ -7,6 +7,7 @@ const Experience = () => {
     <div className="pb-4 px-4">
       <Motion.div
         className="my-20 flex justify-center"
+        viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: 100 }}
         transition={{ duration: 1.5 }}
@@ -30,6 +31,7 @@ const Experience = () => {
           <Motion.div
             key={experience.company}
             className={`experience-entry mb-8 flex flex-wrap lg:justify-center ${index === 0 ? "experience-current" : ""}`}
+            viewport={{ once: true }}
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
             transition={{ duration: 1, delay: index * 0.2 }}
@@ -65,6 +67,7 @@ const Experience = () => {
                   rel="noopener noreferrer"
                   className="inline-block rounded-lg bg-orange-500 px-4 py-2 text-sm font-medium text-white"
                   initial={{ opacity: 0, scale: 0.9 }}
+                  viewport={{ once: true }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   whileHover={{ scale: 1.1, boxShadow: "0px 0px 8px rgba(255,140,0,0.8)" }}
                   transition={{ duration: 0.3 }}

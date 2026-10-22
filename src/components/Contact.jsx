@@ -7,6 +7,7 @@ const Contact = () => {
   return (
     <Motion.div
       className="border-t border-stone-900 pb-20"
+      viewport={{ once: true }}
       whileInView={{ opacity: 1, y: 0 }}
       initial={{ opacity: 0, y: 100 }}
       transition={{ duration: 1.5 }}
@@ -15,6 +16,7 @@ const Contact = () => {
       <div className="text-center tracking-tighter">
           <Motion.p
             className="my-4"
+            viewport={{ once: true }}
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: -100 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -23,6 +25,7 @@ const Contact = () => {
           </Motion.p>
           <Motion.p
             className="my-4"
+            viewport={{ once: true }}
             whileInView={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: 100 }}
             transition={{ duration: 1, delay: 0.4 }}

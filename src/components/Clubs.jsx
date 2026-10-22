@@ -8,26 +8,28 @@ const Clubs = () => {
     <div className="pb-4">
       <div className="max-w-full overflow-hidden">
         {CLUBS.map((project, index) => (
-          <div key={index} className="mb-8 flex flex-wrap items-start gap-6 lg:gap-12 lg:justify-center max-w-full">
+          <div key={index} className="mb-8 flex flex-wrap lg:justify-center max-w-full">
 
             <Motion.div
+              viewport={{ once: true }}
               whileInView={{opacity: 1,x: 0 }}
               initial={{opacity: 0,x: -100 }}
               transition={{duration: 1}}
-              className="w-full lg:w-1/4 lg:pr-8 min-w-0"
+              className="mb-4 w-full lg:w-1/4 min-w-0"
             >
               <img
                 src={project.image}
                 loading="lazy"
                 decoding="async"
                 alt={project.title}
-                width={250}
-                height={250}
-                className="mb-6 rounded max-w-full h-auto"
+                width={200}
+                height={150}
+                className="h-[75px] w-[100px] lg:h-[150px] lg:w-[200px] object-contain object-left lg:translate-y-3"
               />
             </Motion.div>
 
             <Motion.div
+              viewport={{ once: true }}
               whileInView={{opacity: 1,x: 0 }}
               initial={{opacity: 0,x: 100 }}
               transition={{duration: 1}}

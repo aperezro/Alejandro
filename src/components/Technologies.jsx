@@ -42,6 +42,7 @@ const Technologies = () => {
     <div className="pb-24">
 <Motion.div
   className="my-20 flex justify-center"
+  viewport={{ once: true }}
   whileInView={{ opacity: 1, y: 0 }}
   initial={{ opacity: 0, y: -100 }}
   transition={{ duration: 1.5 }}
@@ -56,6 +57,7 @@ const Technologies = () => {
 </Motion.div>
 
         <Motion.div
+        viewport={{ once: true }}
         whileInView={{opacity: 1,x: 0 }}
         initial={{opacity: 0,x: -100 }}
         transition={{duration: 1.5}}

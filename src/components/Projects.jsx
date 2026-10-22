@@ -1,4 +1,5 @@
 import { IoHammerSharp } from "react-icons/io5";
+import { FaYoutube } from "react-icons/fa";
 import { PROJECT_SUMMARIES } from '../constants/projectOverview';
 import { PROJECTS, PROJECT_PAGES } from '../constants'
 import { BiHandicap } from "react-icons/bi"
@@ -9,6 +10,7 @@ const Projects = () => {
     <section id="projects" className="pb-4">
       <Motion.div
         className="my-20 flex justify-center"
+        viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 1.5 }}
@@ -25,6 +27,7 @@ const Projects = () => {
           <div key={index} className="mb-8 flex flex-wrap items-start gap-6 lg:gap-12 lg:justify-center max-w-full">
 
             <Motion.div
+              viewport={{ once: true }}
               whileInView={{opacity: 1,x: 0 }}
               initial={{opacity: 0,x: -100 }}
               transition={{duration: 1}}
@@ -46,6 +49,7 @@ const Projects = () => {
             </Motion.div>
 
             <Motion.div
+              viewport={{ once: true }}
               whileInView={{opacity: 1,x: 0 }}
               initial={{opacity: 0,x: 100 }}
               transition={{duration: 1}}
@@ -69,7 +73,7 @@ const Projects = () => {
                   whileTap={{ scale: 0.95 }}
                 >View Project <IoHammerSharp aria-hidden="true" className="inline-block shrink-0 align-[-0.125em]" /></Motion.a>}
                 {project.footageUrl && !['project-reignition', 'dusklight'].includes(project.slug) && (
-                  <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-stone-600 px-4 py-2 text-sm hover:bg-stone-800">View Footage</a>
+                  ['autonomous-roomba', 'mannys-quest'].includes(project.slug) ? <Motion.a href={project.footageUrl} target="_blank" rel="noopener noreferrer" aria-label={`View footage: ${project.title}`} className="ml-2 flex min-h-11 items-center gap-2 rounded bg-stone-900 px-3 py-2 text-red-500 font-semibold transition-all duration-300 hover:bg-red-500 hover:text-white hover:shadow-lg hover:shadow-red-500/50 focus-visible:bg-red-500 focus-visible:text-white focus-visible:shadow-lg focus-visible:shadow-red-500/50" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}><FaYoutube size={18} aria-hidden="true" />View Footage</Motion.a> : <a href={project.footageUrl} target="_blank" rel="noopener noreferrer" className="rounded-full border border-stone-600 px-4 py-2 text-sm hover:bg-stone-800">View Footage</a>
                 )}
 
                 {project.title === "C Programs using a Playstation 4 Controller" && (
