@@ -14,6 +14,7 @@ import job1 from "../assets/jobs/deere.png";
 import job2 from "../assets/jobs/sazon.png";
 import job3 from "../assets/jobs/desi_logo.png";
 import job4 from "../assets/jobs/deptresidence.png";
+import clave from "../assets/jobs/clave.png";
 
 export const HERO_CONTENT = `I build customer-facing software at John Deere and co-founded Sazón Marketing. My work spans full-stack web applications and native iOS game ports, including bringing Sonic Unleashed to iPhone and iPad with Metal rendering and touch controls.`;
 
@@ -29,6 +30,15 @@ export const EXPERIENCES = [
     description: `Contribute to the development and maintenance of customer-facing Channel UX applications used across John Deere's dealer and enterprise platforms. Collaborate with UX designers, product managers, and senior engineers to
 implement user-centered features and workflows. Develop and debug production code in a large-scale enterprise codebase, following internal engineering standards and review processes`,
     technologies: ["Javascript", "React.js", "Playwright", "Docker", "TypeScript", "AWS", "Datadog"],
+  },
+  {
+    year: "October 2026 - Present",
+    role: "Software Engineer Intern",
+    company: "Clave",
+    image: clave,
+    website: "https://tryclave.ai/",
+    description: "Architected and deployed secure REST APIs for Clave’s Developer Partner Program, providing operational data access to 10+ developer partners building AI-powered restaurant management integrations. Engineered backend APIs, AI agent workflows, and developer tooling for a multi-unit restaurant technology platform, automating inventory reporting to save customers up to 128 hours monthly.",
+    technologies: ["REST APIs", "Backend Development", "AI Agent Workflows", "Developer Tooling"],
   },
   {
     year: "May 2025 - Present",

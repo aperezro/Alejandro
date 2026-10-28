@@ -56,7 +56,7 @@ const Experience = () => {
             <div className="w-full max-w-xl lg:w-3/4 min-w-0">
               {index === 0 && <p className="experience-current-label">Current engineering role</p>}
               <h4 className="mb-1 text-xl font-semibold text-stone-100">{experience.role}</h4>
-              <p className="mb-3 font-medium text-stone-200">{experience.company}</p>
+              <p className="mb-3 font-medium text-stone-200">{experience.website ? <a href={experience.website} target="_blank" rel="noopener noreferrer" className="underline decoration-stone-500 underline-offset-4 hover:text-white">{experience.company}</a> : experience.company}</p>
               <p className="mb-4 leading-relaxed text-stone-300">{experience.description}</p>
 
 
